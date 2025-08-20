@@ -1,4 +1,4 @@
-# BG 1st  Inputs and Ouputs Notes
+# BG 1st Inputs and Ouputs Notes
 
 #5 what is an input
 #A way for the code to get information
