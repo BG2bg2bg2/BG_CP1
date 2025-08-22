@@ -10,7 +10,8 @@
 go = True
 names = []
 while go == True:
-        if names == input("What is your name"):
+        if names == True:
+            name = input("What is your name")
             print(f"Hi" + "{name}")
         age = input("How old are you?")
         print(f"{age}")
