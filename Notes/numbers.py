@@ -30,7 +30,7 @@ print(num)
 hours = 3
 minutes = 4
 
-pint(hours*60 + minutes)
+print(hours*60 + minutes)
 
 age = input("How old are you \n")
 
