@@ -3,5 +3,5 @@ y = input("HI")
 print(y)
 print(y, y)
 
-print(‘HI’)
-print("Hi”)
+print('HI')
+print("Hi")
