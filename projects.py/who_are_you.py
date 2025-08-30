@@ -9,3 +9,4 @@ if Yes == "yes" or "Yes" or "Y" or "y":
 elif Yes != "yes" or "Yes" or "Y" or "y":
     why_fav_color = input(f"Why do you like {fav_color}")
     print(f"Hi {name} What do you like about being {age}? you like {fav_color} because {why_fav_color}")
+    
