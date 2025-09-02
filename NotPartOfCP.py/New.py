@@ -1,9 +1,9 @@
 print("Hi")
 y = input("HI")
 print(y)
-<<<<<<< HEAD
+#<<<<<<< HEAD
 print(y)
-=======
+#=======
 print(y)
 
 print('HI')
