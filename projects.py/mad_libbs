@@ -1,48 +1,55 @@
 #BG 1st Mad libbs
 
 
-gen1 = input("Enter a gender type: he, she, they, it: exedera 1: ")
-gen2 = input("Enter a gender type: he, she, they, it: exedera 2: ")
-gen3 = input("Enter a gender type: he, she, they, it: exedera 3: ")
-gen4 = input("Enter a gender type: he, she, they, it: exedera 4: ")
-gen5 = input("Enter a gender type: he, she, they, it: exedera 5: ")
+gen1 = input("Enter a gender type: he, she, and it 1: ")
+gen2 = input("Enter a gender type: him, her, and it 2: ")
+gen3 = input("Enter a gender type: him, her, and it 3: ")
+gen4 = input("Enter a gender type: him, her, and it 4: ")
+gen5 = input("Enter a gender type: him, her, and it 5: ")
 
+print("must be diffrent")
 pas_t_v1 = input("enter a past tense verb 1: ")
 pas_t_v2 = input("Enter a past tense verb 2: ")
 pas_t_v3 = input("enter a past tense verb 3: ")
 pas_t_v4 = input("enter a past tense verb 4: ")
 pas_t_v5 = input("enter a past tense verb 5: ")
 
+print("Must be diffrent")
 adj1 = input("enter an ajective for 1 ")
 adj2 = input("enter an ajective for 2 ")
 adj3 = input("enter an ajective for 3 ")
 adj4 = input("enter an ajective for 4 ")
 adj5 = input("enter an ajective for 5 ")
 
+print("must be diffrent")
 adv1 = input("enter an adverb for verb 1 ")
 adv2 = input("enter an adverb for verb 2 ")
 adv3 = input("enter an adverb for verb 3 ")
 adv4 = input("enter an adverb for verb 4 ")
 adv5 = input("enter an adverb for verb 5 ")
 
+print("must be diffrent each time")
 verb1 = input("enter a verb for verb 1 ")
 verb2 = input("enter a verb for verb 2 ")
-verb3 = input("enter a verb for verb 3 ")
+verb3 = input("enter a verb with -ing for verb 3 ")
 verb4 = input("enter a verb for verb 4 ")
 verb5 = input("enter a verb for verb 5 ")
 
-p1 = input("enter a person for person 1 ")
-p2 = input("enter a person for person 2 ")
-p3 = input("enter a person for person 3 ")
-p4 = input("enter a person for person 4 ")
-p5 = input("enter a person for person 5 ")
+print("for this part do man, woman, or person only")
+p1 = input(f"enter a person for {gen1} 1 ")
+p2 = input(f"enter a person for {gen2} 2 ")
+p3 = input(f"enter a person for {gen3} 3 ")
+p4 = input(f"enter a person for {gen4} 4 ")
+p5 = input(f"enter a person for {gen5} 5 ")
 
+print("must be an general object")
 t1 = input("enter a thing for 1 ")
 t2 = input("enter a thing for 2 ")
 t3 = input("enter a thing for 3 ")
 t4 = input("enter a thing for 4 ")
 t5 = input("enter a thing for 5 ")
 
+print("must be a genral place")
 pl1 = input("enter a place for place 1 ")
 pl2 = input("enter a place for place 2 ")
 pl3 = input("enter a place for place 3 ")
@@ -50,4 +57,4 @@ pl4 = input("enter a place for place 4 ")
 pl5 = input("enter a place for place 5 ")
 
 
-print("The dog "+ pas_t_v1 + " " + adj1 + " to " + place1 + ". When " + gen1 + " got there " + gen1 + " then " + adv1 + " a " + t_of_o1 + " and the " + noun1 + " " + adj2 + " with the dog." )
+print("A " + p1 + " " + pas_t_v1 + " up to a " + p2 + " and " + pas_t_v2 + " to " + gen2 + " You are awsome and this needs to " + verb2 + " else problems might happen at the " + pl1 + " for there might be some " + verb3 + ". If not then a" + p3 + " might get " + verb4 + " and life will not be the same afterwords! After the " + gen1 + " left, " + gen1 + " " + pas_t_v3 + " to a " + pl2 + " and said to the " + p4 + " give me a " + t1 + " else there might be some " + verb3 + " happening at this " + pl2 + " and it will be a problem with all the people. After the " + p1 + " left they then went up to the " + pl3 + 
