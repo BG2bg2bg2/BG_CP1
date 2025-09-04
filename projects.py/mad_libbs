@@ -1,15 +1,53 @@
 #BG 1st Mad libbs
 
 
-gen1 = input("Enter a gender type: he, she, they, it: exedera: ")
-pas_t_v1 = input("enter a past tense verb: ")
-pas_t_v2 = input("Enter a past tense verb: ")
-adj1 = input("enter an adverb: ")
-place1 = input(f"enter a place that {gen1} is doing for {adj1}: ")
-adv1 = input(f"Enter and adverb for {place1}: ")
-verb1 = input(f"enter a verb for {adv1}: ")
-t_of_o1 = input("enter a type of object")
-adj2 = input("enter an ajective")
-noun1 = input("enter a thing")
-t_of_f = input("enter a type of food")
+gen1 = input("Enter a gender type: he, she, they, it: exedera 1: ")
+gen2 = input("Enter a gender type: he, she, they, it: exedera 2: ")
+gen3 = input("Enter a gender type: he, she, they, it: exedera 3: ")
+gen4 = input("Enter a gender type: he, she, they, it: exedera 4: ")
+gen5 = input("Enter a gender type: he, she, they, it: exedera 5: ")
+
+pas_t_v1 = input("enter a past tense verb 1: ")
+pas_t_v2 = input("Enter a past tense verb 2: ")
+pas_t_v3 = input("enter a past tense verb 3: ")
+pas_t_v4 = input("enter a past tense verb 4: ")
+pas_t_v5 = input("enter a past tense verb 5: ")
+
+adj1 = input("enter an ajective for 1 ")
+adj2 = input("enter an ajective for 2 ")
+adj3 = input("enter an ajective for 3 ")
+adj4 = input("enter an ajective for 4 ")
+adj5 = input("enter an ajective for 5 ")
+
+adv1 = input("enter an adverb for verb 1 ")
+adv2 = input("enter an adverb for verb 2 ")
+adv3 = input("enter an adverb for verb 3 ")
+adv4 = input("enter an adverb for verb 4 ")
+adv5 = input("enter an adverb for verb 5 ")
+
+verb1 = input("enter a verb for verb 1 ")
+verb2 = input("enter a verb for verb 2 ")
+verb3 = input("enter a verb for verb 3 ")
+verb4 = input("enter a verb for verb 4 ")
+verb5 = input("enter a verb for verb 5 ")
+
+p1 = input("enter a person for person 1 ")
+p2 = input("enter a person for person 2 ")
+p3 = input("enter a person for person 3 ")
+p4 = input("enter a person for person 4 ")
+p5 = input("enter a person for person 5 ")
+
+t1 = input("enter a thing for 1 ")
+t2 = input("enter a thing for 2 ")
+t3 = input("enter a thing for 3 ")
+t4 = input("enter a thing for 4 ")
+t5 = input("enter a thing for 5 ")
+
+pl1 = input("enter a place for place 1 ")
+pl2 = input("enter a place for place 2 ")
+pl3 = input("enter a place for place 3 ")
+pl4 = input("enter a place for place 4 ")
+pl5 = input("enter a place for place 5 ")
+
+
 print("The dog "+ pas_t_v1 + " " + adj1 + " to " + place1 + ". When " + gen1 + " got there " + gen1 + " then " + adv1 + " a " + t_of_o1 + " and the " + noun1 + " " + adj2 + " with the dog." )
