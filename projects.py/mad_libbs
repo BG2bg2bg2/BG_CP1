@@ -56,5 +56,7 @@ pl3 = input("enter a place for place 3 ")
 pl4 = input("enter a place for place 4 ")
 pl5 = input("enter a place for place 5 ")
 
+prase1 = input("enter a phase that is apropriate but insulting")
 
-print("A " + p1 + " " + pas_t_v1 + " up to a " + p2 + " and " + pas_t_v2 + " to " + gen2 + " You are awsome and this needs to " + verb2 + " else problems might happen at the " + pl1 + " for there might be some " + verb3 + ". If not then a" + p3 + " might get " + verb4 + " and life will not be the same afterwords! After the " + gen1 + " left, " + gen1 + " " + pas_t_v3 + " to a " + pl2 + " and said to the " + p4 + " give me a " + t1 + " else there might be some " + verb3 + " happening at this " + pl2 + " and it will be a problem with all the people. After the " + p1 + " left they then went up to the " + pl3 + 
+
+print("A " + p1 + " " + pas_t_v1 + " up to a " + p2 + " and " + pas_t_v2 + " to " + gen2 + " You are awsome and this needs to " + verb2 + " else problems might happen at the " + pl1 + " for there might be some " + verb3 + ". If not then a" + p3 + " might get " + verb4 + " and life will not be the same afterwords! After the " + p1 + " left, " + gen1 + " " + pas_t_v3 + " to a " + pl2 + " and said to the " + p4 + " give me a " + t1 + " else there might be some " + verb3 + " happening at this " + pl2 + " and it will be a problem with all the people. After the " + p1 + " left they then went up to the " + pl3 + " at the end of town, and pushed some people over saying " + prase1 + "! Else I will beat this town to the ground! Every one must fear me or they are going to be a" + pas_t_v5 + " person, and it will be entertaining for some to see it")
