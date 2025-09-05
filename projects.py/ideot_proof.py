@@ -13,9 +13,11 @@ else:
         print("last name is too long and only one man had it that long ever recoded")
     elif not lname.find(" ") == -1:
         print("must not have spaces")
-    elif not lname.isalph():
+    elif not lname.isalpha():
         print("last name must not have have numbers")
     else:
         gpa = input("enter your gpa")
         if len(gpa) > 4:
-            print 
+            print("must if 5.0 is gpa then use 4")
+        else:
+            print(fname)
