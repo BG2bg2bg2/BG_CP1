@@ -8,24 +8,24 @@ print("Hello {}, your are {:E}. That is so old! You have ${:.2f} you are broke R
 
 
 #What does the format method allow me to change about my outputs?
-
+#alows you to change to general formats so that way its able to be readable to the reader
 
 
 #Describe why it is important to format your outputs
-
+#to be readable to the reader
 
 
 
 #What is an f-string?
-
+#something that has the f = format to the code
 
 
 #How do I create an f-string?
-
+# print(f" {Name}"")
 
 
 #What do f-strings allow me to do?
-
+#change code and be more simple for readers to have/do.
 
 
 print("Hello {}, your are {:E}. That is so old! You have ${:.2f} you are broke Random personent {:%}".format(Name, Age,money, percent))
