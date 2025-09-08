@@ -5,57 +5,36 @@ WIDTH, HEIGHT = 800, 600
 CELL = 10
 FPS = 20
 
-PLAYER_COLOR = (0, 255, 255)   # Cyan
-CPU_COLOR = (255, 0, 255)      # Magenta
-CRASH_COLOR = (255, 180, 100)
+PLAYER_COLOR = (0, 255, 255)
+CPU_COLOR = (255, 0, 255)
 BG_COLOR = (0, 0, 0)
 
-# Directions (dx, dy)
-DIRS = {
-    "UP": (0, -1),
-    "RIGHT": (1, 0),
-    "DOWN": (0, 1),
-    "LEFT": (-1, 0)
-}
+# Directions
+DIRS = {"UP": (0, -1), "RIGHT": (1, 0), "DOWN": (0, 1), "LEFT": (-1, 0)}
 ORDERED_DIRS = ["UP", "RIGHT", "DOWN", "LEFT"]
 
 # --- PLAYER CLASS ---
 class Rider:
     def __init__(self, x, y, dir_key, color):
-        self.x = x
-        self.y = y
+        self.x, self.y = x, y
         self.dir = dir_key
         self.color = color
         self.alive = True
-        self.trail = set()
-        self.trail.add((x, y))
+        self.trail = {(x, y)}
 
-    def turn_left(self):
-        i = (ORDERED_DIRS.index(self.dir) - 1) % 4
-        self.dir = ORDERED_DIRS[i]
-
-    def turn_right(self):
-        i = (ORDERED_DIRS.index(self.dir) + 1) % 4
-        self.dir = ORDERED_DIRS[i]
+    def turn_left(self): self.dir = ORDERED_DIRS[(ORDERED_DIRS.index(self.dir) - 1) % 4]
+    def turn_right(self): self.dir = ORDERED_DIRS[(ORDERED_DIRS.index(self.dir) + 1) % 4]
 
     def move(self, grid):
-        if not self.alive:
-            return
+        if not self.alive: return
         dx, dy = DIRS[self.dir]
-        self.x += dx
-        self.y += dy
+        self.x += dx; self.y += dy
 
-        # Collision with walls
         if not (0 <= self.x < WIDTH // CELL and 0 <= self.y < HEIGHT // CELL):
-            self.alive = False
-            return
-
-        # Collision with trails
+            self.alive = False; return
         if (self.x, self.y) in grid:
-            self.alive = False
-            return
+            self.alive = False; return
 
-        # Leave trail
         self.trail.add((self.x, self.y))
         grid.add((self.x, self.y))
 
@@ -65,27 +44,32 @@ class Rider:
         if self.alive:
             pygame.draw.rect(surf, (255, 255, 255), (self.x * CELL, self.y * CELL, CELL, CELL), 1)
 
+# --- RESET FUNCTION ---
+def reset():
+    global grid, player, cpu
+    grid = set()
+    player = Rider(10, HEIGHT // (2 * CELL), "RIGHT", PLAYER_COLOR)
+    cpu = Rider(WIDTH // CELL - 10, HEIGHT // (2 * CELL), "LEFT", CPU_COLOR)
+
+# --- CPU AI ---
+def cpu_decide(cpu, player, grid):
+    dx, dy = DIRS[cpu.dir]
+    nx, ny = cpu.x + dx, cpu.y + dy
+    if (nx, ny) in grid or not (0 <= nx < WIDTH // CELL and 0 <= ny < HEIGHT // CELL):
+        if random.random() < 0.5: cpu.turn_left()
+        else: cpu.turn_right()
+
 # --- GAME SETUP ---
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
+font = pygame.font.SysFont("monospace", 30)
 
-grid = set()
-player = Rider(10, HEIGHT // (2 * CELL), "RIGHT", PLAYER_COLOR)
-cpu = Rider(WIDTH // CELL - 10, HEIGHT // (2 * CELL), "LEFT", CPU_COLOR)
+# Restart button rectangle
+button_rect = pygame.Rect(WIDTH // 2 - 80, HEIGHT // 2 + 40, 160, 50)
 
+reset()
 running = True
-
-# --- BASIC CPU AI ---
-def cpu_decide(cpu, player, grid):
-    # Try to go straight, but turn if about to crash
-    dx, dy = DIRS[cpu.dir]
-    nx, ny = cpu.x + dx, cpu.y + dy
-    if (nx, ny) in grid or not (0 <= nx < WIDTH // CELL and 0 <= ny < HEIGHT // CELL):
-        if random.random() < 0.5:
-            cpu.turn_left()
-        else:
-            cpu.turn_right()
 
 # --- MAIN LOOP ---
 while running:
@@ -93,35 +77,36 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player.turn_left()
-            elif event.key == pygame.K_RIGHT:
-                player.turn_right()
-            elif event.key == pygame.K_r:  # Restart
-                grid = set()
-                player = Rider(10, HEIGHT // (2 * CELL), "RIGHT", PLAYER_COLOR)
-                cpu = Rider(WIDTH // CELL - 10, HEIGHT // (2 * CELL), "LEFT", CPU_COLOR)
+            if event.key == pygame.K_LEFT: player.turn_left()
+            elif event.key == pygame.K_RIGHT: player.turn_right()
+            elif event.key == pygame.K_r: reset()
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if button_rect.collidepoint(event.pos):
+                reset()
 
     if player.alive and cpu.alive:
         cpu_decide(cpu, player, grid)
-        player.move(grid)
-        cpu.move(grid)
+        player.move(grid); cpu.move(grid)
 
-    # Draw
+    # Draw background
     screen.fill(BG_COLOR)
-    player.draw(screen)
-    cpu.draw(screen)
+    player.draw(screen); cpu.draw(screen)
 
+    # End of game screen
     if not player.alive or not cpu.alive:
-        font = pygame.font.SysFont("monospace", 40)
-        if not player.alive and not cpu.alive:
-            msg = "DRAW!"
-        elif player.alive:
-            msg = "PLAYER WINS!"
-        else:
-            msg = "CPU WINS!"
+        if not player.alive and not cpu.alive: msg = "DRAW!"
+        elif player.alive: msg = "PLAYER WINS!"
+        else: msg = "CPU WINS!"
+
         text = font.render(msg, True, (0, 255, 255))
-        screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - 30))
+        screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - 40))
+
+        # Draw Restart button
+        pygame.draw.rect(screen, (50, 50, 50), button_rect)
+        pygame.draw.rect(screen, (0, 255, 255), button_rect, 2)
+        button_text = font.render("RESTART", True, (0, 255, 255))
+        screen.blit(button_text, (button_rect.centerx - button_text.get_width() // 2,
+                                  button_rect.centery - button_text.get_height() // 2))
 
     pygame.display.flip()
     clock.tick(FPS)
