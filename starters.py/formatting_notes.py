@@ -23,7 +23,6 @@ print("Hello {}, your are {:E}. That is so old! You have ${:.2f} you are broke R
 #How do I create an f-string?
 # print(f" {Name}"")
 
-
 #What do f-strings allow me to do?
 #change code and be more simple for readers to have/do.
 
