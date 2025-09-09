@@ -30,22 +30,22 @@ while True:
         n2 = float(n2)
         break
   if a1 == "+" or a1 == "a":
-    print(f"{n1:.2f} + {n2:.2f} = {n1 + n2:.2f}")
+    print(f"\n{n1:.2f} + {n2:.2f} = {n1 + n2:.2f}")
   if a1 == "-" or a1 == "a":
-    print(f"{n1:.2f} - {n2:.2f} = {n1 - n2:.2f}")
+    print(f"\n{n1:.2f} - {n2:.2f} = {n1 - n2:.2f}")
   if a1 == "/" or a1 == "a":
-    print(f"{n1:.2f} / {n2:.2f} = {n1 / n2:.2f}")
+    print(f"\n{n1:.2f} / {n2:.2f} = {n1 / n2:.2f}")
   if a1 == "*" or a1 == "a":
-    print(f"{n1:.2f} * {n2:.2f} = {n1 * n2:.2f}")
+    print(f"\n{n1:.2f} * {n2:.2f} = {n1 * n2:.2f}")
   if a1 == "%" or a1 == "a":
-    print(f"{n1:.2f} % {n2:.2f} = {n1 % n2:.2f}")
+    print(f"\n{n1:.2f} % {n2:.2f} = {n1 % n2:.2f}")
   if a1 == "//" or a1 == "a":
-    print(f"{n1:.2f} // {n2:.2f} = {n1 // n2:.2f}")
+    print(f"\n{n1:.2f} // {n2:.2f} = {n1 // n2:.2f}")
   if a1 == "**" or a1 == "a":
     try:
-      print(f"{n1:.2f} ** {n2:.2f} = {n1 ** n2:.2f}")
+      print(f"\n{n1:.2f} ** {n2:.2f} = {n1 ** n2:.2f}")
     except:
-      print("value too large for exponent")
+      print("\nvalue too large for exponent")
 
 
     
