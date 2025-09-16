@@ -17,7 +17,7 @@ while True:
 l = int(input ("What is the amount of crew members excluding captain and first mate"))
        
 ca = int(l * 500)
-c = int(ca - m)
+c = int(m - ca)
 crew = c
 cap = 7 / (m)
 f_mate = 3 / (m)
