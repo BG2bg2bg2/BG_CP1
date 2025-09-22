@@ -37,6 +37,7 @@ elif hit_roll + player_attack >= 12:
 else:
     print("You missed.")
 
-if True > 0
+if hit_roll == 1:
     attack_roll = random.randint(1,20) + monster_attack
-    if hit_roll
+    if hit_roll == 20:
+        print("never give up")
