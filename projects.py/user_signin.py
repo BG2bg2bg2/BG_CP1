@@ -8,7 +8,7 @@
 
 
 us1 = True
-while us1 == True:
+while us1 == False:
     def first_user_name(us1):
         try:
             float(str.us1)
