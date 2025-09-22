@@ -34,6 +34,7 @@ else:
         print("Must be a last name")
     elif last_name1 == first_name1:
         print("Make up a last name")
+print(first_name1 + last_name1)
 
 #check for username
 
