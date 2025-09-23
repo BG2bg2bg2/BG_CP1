@@ -24,7 +24,9 @@ if float(first_name1) >=0:
     print("must me a name")
 if float(first_name1) <=0:
     print("Not going to work must be a name")
-elif str(first_name1) >= len(15):
+if str(float(first_name1)) <= len(2):
+    print("Must be longer")
+if str(float(first_name1)) >= len(15):
     print("shorten your user name")
 else:
     last_name1 = input("what is your last name")
@@ -34,6 +36,8 @@ else:
         print("Must be a last name")
     elif last_name1 == first_name1:
         print("Make up a last name")
+    elif str(last_name1) >=(15):
+        print("Not going to work shorten your last name")
 print(first_name1 + last_name1)
 
 #check for username
@@ -49,3 +53,30 @@ print(first_name1 + last_name1)
 #Save your work
 
 #Commit and push your code to Github
+
+#Not my code
+#           |
+#           |
+#          " "
+#           '
+
+username = "notneeded23"
+password = "BLJDFI324lkjaekl#$#@lkj"
+user = input ("What is your username")
+pword = input ("What is your password")
+if not user or not pword:
+    print("Enter a valid input")
+elif user == "Love" and pword == "passweord":
+    print("Hello Love")
+
+if pword == "passweord":
+    print("Hello Love")
+else:
+    print("Incorect password")
+    pass
+if user == username and pword == password:
+    print("wellcom")
+elif user == username:
+    print("Password incorect")
+else:
+    print("Incorect password")
