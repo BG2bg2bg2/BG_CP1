@@ -12,4 +12,5 @@ elif grade <= 98:
     elif grade < 92:
         if grade > 82:
             print("You have a 'B'")
-        elif 
+        else:
+            print("Never going to pass")
