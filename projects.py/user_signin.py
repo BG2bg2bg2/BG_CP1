@@ -1,45 +1,24 @@
-#BG 1st
-
-#Name your file user_signin.py
+#BG 1st user_signin.py
 
 
 #Remember to put our 1st line comment (initials, class period, assignment name)
 
 
+user_name1 = True
+while user_name1 == False:
+    first_name1 = input("What is your first name")
+        if first_name1 == complex(first_name1):
+           print("not going to work must be a name with letters only")
+        elif first_name1 is float(first_name1):
+            print("Not going to happen")
+        elif first_name1 is len(first_name1) <= 2:
+            print("Your first name must be longer")
+        else:
+            last_name1 = input("What is your last name")
+            def user_name1 (first_name1, last_name1):
 
-us1 = True
-while us1 == False:
-    def first_user_name(us1):
-        try:
-            float(str.us1)
-            return True
-        except ValueError:
-            print("Somethings is wrong")
-
-#You will need 2 user inputs
-us1
-
-first_name1 = input("what is your first name")
-if float(first_name1) >=0:
-    print("must me a name")
-if float(first_name1) <=0:
-    print("Not going to work must be a name")
-if str(float(first_name1)) <= len(2):
-    print("Must be longer")
-if str(float(first_name1)) >= len(15):
-    print("shorten your user name")
-else:
-    last_name1 = input("what is your last name")
-    if float(last_name1) >=0:
-        print("Nice try must be a last name")
-    if float(last_name1) <=0:
-        print("Must be a last name")
-    elif last_name1 == first_name1:
-        print("Make up a last name")
-    elif str(last_name1) >=(15):
-        print("Not going to work shorten your last name")
-print(first_name1 + last_name1)
-
+                print(f"your username is {first_name1}.{last_name1}")
+        
 #check for username
 
 #Check for password
@@ -60,23 +39,23 @@ print(first_name1 + last_name1)
 #          " "
 #           '
 
-username = "notneeded23"
-password = "BLJDFI324lkjaekl#$#@lkj"
-user = input ("What is your username")
-pword = input ("What is your password")
-if not user or not pword:
-    print("Enter a valid input")
-elif user == "Love" and pword == "passweord":
-    print("Hello Love")
-
-if pword == "passweord":
-    print("Hello Love")
-else:
-    print("Incorect password")
-    pass
-if user == username and pword == password:
-    print("wellcom")
-elif user == username:
-    print("Password incorect")
-else:
-    print("Incorect password")
+#username6 = "notneeded23"
+#password = "BLJDFI324lkjaekl#$#@lkj"
+#user = input ("What is your username")
+#pword = input ("What is your password")
+#if not user or not pword:
+#    print("Enter a valid input")
+#elif user == "Love" and pword == "passweord":
+#    print("Hello Love")
+#
+#if pword == "passweord":
+#    print("Hello Love")
+#else:
+#    print("Incorect password")
+#    pass
+#if user == username6 and pword == password:
+#    print("wellcom")
+#elif user == username6:
+#    print("Password incorect")
+#else:
+#    print("Incorect password")
