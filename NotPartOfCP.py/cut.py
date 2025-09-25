@@ -32,5 +32,4 @@ while user_name1 == False:
                 nun1 = input("Enter your first name")
                 nun2 = input("enter your last name")
                 if nun1 == nun1 and nun2 == nun2:
-                    nun1 + nun2 is new_user1:
                     print(f"Your user name is {nun1}.{nun2}")
