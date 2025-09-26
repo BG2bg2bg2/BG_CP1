@@ -16,3 +16,8 @@ print(numone + numtow)
 
 #run time error
 
+import random
+while True:
+    denominator = random.randint(0,5)
+
+    print(10/denominator)
