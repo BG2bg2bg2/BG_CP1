@@ -5,34 +5,36 @@ LG = False
 while LG == False:
     try:
         grade = float(input("Enter your grade"))
+        result = (f"Your score of {grade} is ")
         if grade > 100:
-            print(f"you have extra credit with {grade - 100}")
-        if grade <= 100 and grade >= 94:
-            print("You have and 'A'")
-        if grade < 94 and grade >= 90:
-            print("You have an 'A-'")
-        if grade < 90 and grade >= 87:
+            #print(f"you have extra credit with {grade - 100}")
+            result = result + "A"
+        elif grade <= 100 and grade >= 94:
+            print(f"You have an 'A' with {grade}%")
+        elif grade < 94 and grade >= 90:
+            print(f"You have an 'A-'")
+        elif grade < 90 and grade >= 87:
             print("You have a 'B+'")
-        if grade < 87 and grade >= 84:
+        elif grade < 87 and grade >= 84:
             print("you have a B")
-        if grade < 84 and grade >= 80:
+        elif grade < 84 and grade >= 80:
             print("You have a 'B-'")
-        if grade < 80 and grade >= 77:
+        elif grade < 80 and grade >= 77:
             print("you have a 'C+'")
-        if grade < 77 and grade >= 74:
+        elif grade < 77 and grade >= 74:
             print("You have a 'C'")
-        if grade < 74 and grade >= 70:
+        elif grade < 74 and grade >= 70:
             print("You have a 'C-'")
-        if grade < 70 and grade >= 67:
+        elif grade < 70 and grade >= 67:
             print("You have a 'D+'")
-        if grade < 67 and grade >= 64:
+        elif grade < 67 and grade >= 64:
             print("You have a 'D'")
-        if grade < 64 and grade >= 60:
+        elif grade < 64 and grade >= 60:
             print("You have a 'D-'")
-        if grade < 60 and grade >= 0:
+        else:
             print("You have an 'F'")
         break
     except:
         print("try again")
 
-    print(f"you have extra credit with {grade - 100}")
+    print(result)
