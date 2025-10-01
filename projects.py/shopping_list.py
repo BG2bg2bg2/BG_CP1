@@ -20,7 +20,7 @@ while True:
 
     elif num == "3":
         if shop:
-            for a in (shop, a):
+            for a in enumerate(shop, 1):
                 print(f"\n{a}, {item}")
         else:
             print("\nNo item on")
