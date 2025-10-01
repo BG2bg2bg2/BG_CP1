@@ -6,3 +6,4 @@ if table_colum.isalpha():
     print("must be anumber")
 if table_colum.isdigit():
     table_row = input("enter another number for rows going up and down")
+print("Hi")

@@ -19,5 +19,4 @@ for (nums) in range(1, 10):
     print(nums)
 for (nums) in range(20,0,-2):
     print(f"\n {nums}") 
-    time.sleep(4)
 #this counts by 2s in revers
