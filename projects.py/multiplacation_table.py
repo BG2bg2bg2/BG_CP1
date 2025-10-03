@@ -10,5 +10,4 @@ print(a)
 for b in table_colum:
     print(b)
 
-for a in enumerate(table_colum):
     print(table_colum)
