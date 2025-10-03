@@ -26,6 +26,7 @@ print("code is done")
 
 i = 0
 while i <= 20:
+    i += 10
     if i == 10:
         print("i is 10")
         continue
@@ -33,3 +34,10 @@ while i <= 20:
         print(f"{i} iteration of the code")
         i+= 1
 print("the loop ended")
+
+hang_man =""" _______
+|      o
+|     /|\\
+|     /|\\
+|_______ """
+print(hang_man)
