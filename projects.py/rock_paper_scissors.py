@@ -40,7 +40,9 @@ print("Wellcome to the rock paper sissors game info will follow")
 while game_over == False and user_score <11 and cp_score < 11:
         print(user_score)
         print(cp_score)
+        
         user_choice = input("0 for Rock, 1 for Paper, 2 for Scissors or 3 for quit.\n")
+        
         if user_choice.isdigit():
             user_choice = int(user_choice)
             if not (0 <= user_choice <= 3):
