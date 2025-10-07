@@ -1,86 +1,72 @@
-#BG 1st rock paper sissors
+#BG 1st rock paper scissors
 
 import random
-user_score = 0
-cp_score = 0
 
-rock ="""
+rock = """
     _______
 ---'   ____)
-      (_____)
-      (_____)
-      (____)
----.__(___)"""
+     (_____)
+     (_____)
+     (____)
+---.__(___)
+    """
 
 paper = """
     _______
 ---'   ____)____
           ______)
-          _______)
          _______)
----.__________)"""
+         _______)
+---.__________)
+    """
 
-sissors = """
+scissors = """
     _______
 ---'   ____)____
           ______)
-       __________)
-      (____)
----.__(___)"""
+      __________)
+        (____)
+  ---.__(___)
+    """
 
-while True:
-    print(user_score)
-    print(cp_score)
-    if user_score <10 or cp_score <10:
-        user = input("enter rock (r) paper (p) or sissors (s)")
-        
-    if user == "rock" or "r":
-            print(rock)
 
-    if user == "paper" or "p":
-            print(paper)
 
-    if user == "sissors" or "s":
-            print(sissors)
-    else:
-            if user != "rock" or user != "r"\
-            or user != "paper" or user != "p"\
-            or user != "sissors" or user != "s":
-                print("try againg")
+game = [rock, paper, scissors, quit]
+game_over = False
+user_score = 0
+cp_score = 0
 
-    cp = random.randint(1,4)
-    if cp == 1: 
-            cp = rock
-            print("rock")
-            
-    if cp == 2:
-            cp = paper
-            print("paper")
-             
-    if cp == 3:
-            cp =sissors
-            print("sissors")
-             
-        #tie
-    if user == rock and cp == rock\
-        or user == paper and cp == paper\
-        or user == sissors and cp == sissors:
-            print("tie")
-             
-        #user wins
-    if user == rock and cp == sissors\
-        or user == paper and cp == rock\
-        or user == sissors and cp == paper:
-            print("Player wins")
-            user_score += 1
-            continue
-        #cp wins
-    if cp == rock and user == sissors\
-        or cp == paper and user == rock\
-        or cp == sissors and user == paper:
-            print("Computer wins")
-            cp_score += 1
-            continue
-    else:
-        print(cp_score)
+print("Wellcome to the rock paper sissors game info will follow")
+while game_over == False and user_score <11 and cp_score < 11:
         print(user_score)
+        print(cp_score)
+        user_choice = int(input("0 for Rock, 1 for Paper, 2 for Scissors or 3 for quit.\n"))
+
+        if not (0 <= user_choice <= 4):
+            print("Invalid input. Please choose 0, 1, 2, or 3.")
+            continue
+
+        print("You chose:")
+        print(game[user_choice])
+        if user_choice == 3:
+            print("Quiting...\n Good bye")
+            break
+        
+
+        if user_choice == "3":
+            game_over = True
+
+        cp_choice = random.randint(0, 2)
+        print("computer chose:")
+        print(game[cp_choice])
+
+        if user_choice == cp_choice:
+            print("It's a draw!")
+        elif (user_choice == 0 and cp_choice == 2) or \
+            (user_choice == 1 and cp_choice == 0) or \
+            (user_choice == 2 and cp_choice == 1):
+            print("You win!")
+            user_score = user_score + 1
+        else:
+            print("You lose!")
+            cp_score = cp_score + 1
