@@ -68,6 +68,7 @@ while game_over == False and user_score <11 and cp_score < 11:
 
         if user_choice == cp_choice:
             print("It's a draw!")
+            
         elif (user_choice == 0 and cp_choice == 2) or \
             (user_choice == 1 and cp_choice == 0) or \
             (user_choice == 2 and cp_choice == 1):
