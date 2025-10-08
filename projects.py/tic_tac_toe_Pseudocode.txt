@@ -1,0 +1,14 @@
+#BG 1st tic tac toe pseudocode
+
+y = """
+__|__|__
+__|__|__
+__|__|__
+"""
+x = 1|2|3
+    4|5|6
+    7|8|9
+
+you have your board that is 3X3
+numbers on the board 1-9 to help both you and the computer choose a spot to claim it with the letter you choose
+you may choose to be the Xs, the Os, or have the computer chooses first
