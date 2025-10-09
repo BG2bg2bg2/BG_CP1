@@ -1,50 +1,57 @@
 #BG 1st tic tac toe pseudocode
 
-you have your board that is 3X3
+#import means to have what ever follows to run with the code
 
-numbers on the board 1-9 to help both you and the computer choose a 
-spot to claim it with the letter you choose
+import random module
 
-you may choose to be the Xs, the Os, or have the computer randomly 
-choose who goes first.
+#initialize player and computer scores to 0
 
-you then choose to go first, second, or computer randomly choose.
+while True:
 
-instructions how to play
+    #ask the user to choose a letter to be eithe Xs, Os or have the computer randomly choose
+    
+    #ask the user to choose to go first, second, or computer randomly choose
 
-1. show the options of what you want to have (0 is to be the Xs, 1 
-is to be the Os, and 2 is to have the computer randomly choose who 
-is what.)
+    #while the input is not valid (Xs, Os, cp choose):
+        #ask the user to input valid
+    
+    #use randon.choice() to select computer's choice from ["Xs", "Os"] and to go ["first", "second"] 
+    if the user has already selected something out of one or both lists
+    then the computer takes what is left from the lists
 
-2. ask the user to go first, second, or computer randomly choose.
+    #print both choices and display the game board
 
-3. after everyone desideds to be what and who will go first, loop 
-the rest of the following 4-8
+    while True:
+        #when its he user's turn
+        Ask the user to choose a number 1-9 but can't choose 
+        the numbers that are already claimed
 
-4.show the tic tac toe board, with each position from 1-9.
+        display board
 
-5. if it's the user's turn ask them to choose a spot on the board 
-1-9 and can't claim spots that have been preveiously claimed even if 
-they try really hard to claim it.
+        #when computer's turn
+        computer random.choice [1,9] to claim a spot on the board ridding
+        pre claimed numbers so it won't over wright what is claimed to claim it.
 
-6. the computer then displays the out come on the board with the 
-letter for that spot so the user knows which one they have claimed 
-and what is left availible for next turn
+        display board
 
-7. when the computer's turn comes it randomly choose a number 1-9 
-exept that it can't choose the same spots that are already taken.
+        while True:
 
-8. display the choice of the computer
+            while True:
 
-9. if there is a tie then ask the user to play again or quit
+                #determine winner
+                if there is no three in a row:
+                    print tie
+                    no one wins or loose
+                    continue
 
-10. if there is a winner, score is added and the user may choose to 
-play again or quit with the scores of the user v. computer
-
-11. if the user desides to play again they my restart the score for 
-both or continue were they have left off of for both the user and 
-the computer's score.
-
-12. if the user desides to quit then the computer will display the 
-ratio of wins (user's score) to losses (computer's score) then 
-display... Quiting thanks for playing.
+                else if there is three in a row for Xs:
+                    print winner is the Xs
+                    update score for the Xs
+                    continue
+        
+                else if there is three in a row for the Os:
+                    print winner is the Os
+                    update score for the Os
+                    continue
+        
+        
