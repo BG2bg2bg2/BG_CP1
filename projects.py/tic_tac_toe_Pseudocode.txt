@@ -1,14 +1,50 @@
 #BG 1st tic tac toe pseudocode
 
-y = """
-__|__|__
-__|__|__
-__|__|__
-"""
-x = 1|2|3
-    4|5|6
-    7|8|9
-
 you have your board that is 3X3
-numbers on the board 1-9 to help both you and the computer choose a spot to claim it with the letter you choose
-you may choose to be the Xs, the Os, or have the computer chooses first
+
+numbers on the board 1-9 to help both you and the computer choose a 
+spot to claim it with the letter you choose
+
+you may choose to be the Xs, the Os, or have the computer randomly 
+choose who goes first.
+
+you then choose to go first, second, or computer randomly choose.
+
+instructions how to play
+
+1. show the options of what you want to have (0 is to be the Xs, 1 
+is to be the Os, and 2 is to have the computer randomly choose who 
+is what.)
+
+2. ask the user to go first, second, or computer randomly choose.
+
+3. after everyone desideds to be what and who will go first, loop 
+the rest of the following 4-8
+
+4.show the tic tac toe board, with each position from 1-9.
+
+5. if it's the user's turn ask them to choose a spot on the board 
+1-9 and can't claim spots that have been preveiously claimed even if 
+they try really hard to claim it.
+
+6. the computer then displays the out come on the board with the 
+letter for that spot so the user knows which one they have claimed 
+and what is left availible for next turn
+
+7. when the computer's turn comes it randomly choose a number 1-9 
+exept that it can't choose the same spots that are already taken.
+
+8. display the choice of the computer
+
+9. if there is a tie then ask the user to play again or quit
+
+10. if there is a winner, score is added and the user may choose to 
+play again or quit with the scores of the user v. computer
+
+11. if the user desides to play again they my restart the score for 
+both or continue were they have left off of for both the user and 
+the computer's score.
+
+12. if the user desides to quit then the computer will display the 
+ratio of wins (user's score) to losses (computer's score) then 
+display... Quiting thanks for playing.
