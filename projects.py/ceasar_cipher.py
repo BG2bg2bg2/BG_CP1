@@ -4,6 +4,7 @@ list_code = []
 
 def encode(phrase, shift):
     new_phrase = ""
+    shift = 1
     # Return error message if shift > 25 (there are 26 characters in the alphabet) or < 0
     # step through each character of the string
     for a in phrase:
@@ -33,6 +34,10 @@ def encode(phrase, shift):
     # return new phrase
     return new_phrase
 
+i = input("hi")
+i = (f"{new_phrase}")
+print()
+
 code = True
 # make sure the code can run till code == False
 while code != False:
@@ -40,26 +45,27 @@ while code != False:
     print("welcome to ceasar cipher enter a number 1-5 \n 1 = enter letters to encrypt with shift defalt as 1 \n 2 = enter numbers to encrypt with shift defalt as 1 \n 3 = enter letters and choose how far you want to shift 25 is max \n 4 = enter numbers to encrypt and choose how far you want to shift 25 is the max \n 5 = quit")
     
     # enter a number
-    choose = input(int("enter a number"))
+    choice = (input("enter a number"))
+    
     # for what is in choose depends on the out come
-    for d in choose:
-        if choose != choose.isdigit():
+    for d in choice:
+        try:
+            choose = int(choice)
+        except:
             print("try again")
-            #restart the loop
-            continue    
-
-        elif choose.isdigit():
-            if choose == 1:
+            continue   
+        if choose == 1:
                 code1 = input("enter letters to encrypt defalt of 1")
-
                 if code1.isalpha():
+                    code1 = (new_phrase, shift)
                     print(code1 + 1)
                 elif code1.isdecimal() or code1.isdigit():
                     print("try again")
-            if choose == 2:
-                for e in list_code:
-                    code1 = (input("enter numbers to encrypt with defalt of 1"))
-                    list_code.append(code1)
+        
+        if choose == 2:
+            for e in list_code:
+                code1 = (input("enter numbers to encrypt with defalt of 1"))
+                list_code.append(code1)
     
         if code1 is code1.isdigit():
             c = chr(code1)
