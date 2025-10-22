@@ -1,5 +1,6 @@
 #BG 1st ceasar cipher
 
+list_code = []
 
 def encode(phrase, shift):
     new_phrase = ""
@@ -11,17 +12,17 @@ def encode(phrase, shift):
         print(old_ascii)
         # Find out if lowercase or uppercase
         if old_ascii >= 65 and old_ascii <= 90:
-            p = old_ascii + shift
-            if p > 90:
-                p -= 26
-            print(p)
-            new_phrase += chr(p)
+            b = old_ascii + shift
+            if b > 90:
+                b -= 26
+            print(b)
+            new_phrase += chr(b)
         elif old_ascii >= 97 and old_ascii <= 122:
-            l = old_ascii + shift
-            if l > 122:
-                l -= 26
-            print(l)
-            new_phrase += chr(l)
+            c = old_ascii + shift
+            if c > 122:
+                c -= 26
+            print(c)
+            new_phrase += chr(c)
         else:
             new_phrase += a
         # add shift to the ASCII value
@@ -32,15 +33,38 @@ def encode(phrase, shift):
     # return new phrase
     return new_phrase
 
-print("welcome to ceasar cipher")
-print("enter a phrase and I will encrypt it for you")
-code1 = input("enter phrase here: ")
-print(encode(code1, 1))
+code = True
+# make sure the code can run till code == False
+while code != False:
+    # meant to help guild the user to know what to do
+    print("welcome to ceasar cipher enter a number 1-5 \n 1 = enter letters to encrypt with shift defalt as 1 \n 2 = enter numbers to encrypt with shift defalt as 1 \n 3 = enter letters and choose how far you want to shift 25 is max \n 4 = enter numbers to encrypt and choose how far you want to shift 25 is the max \n 5 = quit")
+    
+    # enter a number
+    choose = input(int("enter a number"))
+    # for what is in choose depends on the out come
+    for d in choose:
+        if choose != choose.isdigit():
+            print("try again")
+            #restart the loop
+            continue    
 
-if code1 is code1.isdigit():
-    c = chr(code1)
-    print(c)
-elif code1 is complex():
-    d=ord(code1)
-    print(d)
+        elif choose.isdigit():
+            if choose == 1:
+                code1 = input("enter letters to encrypt defalt of 1")
+
+                if code1.isalpha():
+                    print(code1 + 1)
+                elif code1.isdecimal() or code1.isdigit():
+                    print("try again")
+            if choose == 2:
+                for e in list_code:
+                    code1 = (input("enter numbers to encrypt with defalt of 1"))
+                    list_code.append(code1)
+    
+        if code1 is code1.isdigit():
+            c = chr(code1)
+            print(c)
+        elif code1 is complex():
+            d=ord(code1)
+            print(d)
 
