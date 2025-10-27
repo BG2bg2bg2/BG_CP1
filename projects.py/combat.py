@@ -26,6 +26,7 @@ class user:
         self.attack = attack[self.character_index]
         self.potion = potion[self.character_index]
         self.speed = speed[self.character_index]
+
     
     def display_stats(self):
         print(self.name)
@@ -34,7 +35,7 @@ class user:
         print(f"defense = {self.defense}")
         print(f"attack = {self.attack}")
         print(f"potion strength = {self.potion}")
-        print(f"speed = {self.speed}")
+        print(f"speed = {self.speed}\n")
 
     def do_attack(self):
         attack_strength = (random.randint(1, self.attack))
@@ -78,13 +79,59 @@ class user:
             print("You died by falling in a pit that was behind a log that you, yourself has setted up")
             print("You DIE GOOD LUCK NEXT TIME (if there is a next time)")
 class Monster:
-    def
+    def __init__ (evil):
+        evil.monster_index = random.randint(0,4)
+        evil.villain_list = ["Werewolf", "Colosial Spider", "Rodent of Unusual Size", "'Venom'", "Dragon"]
+        evil.health_list = [40, 40, 20, 40, 200]
+        evil.attack_list = [110, 40, 100, 40, 140]
+        evil.defense_list = [10,10,20,10,25]
+        
+        evil.villains = evil.villain_list[evil.monster_index]
+        evil.health = evil.health_list[evil.monster_index]
+        evil.attack = evil.attack_list[evil.monster_index]
+        evil.defense = evil.defense_list[evil.monster_index]
+    def display_evil(evil):
+        print(evil.villains)
+        print(f"health = {evil.health}")
+        print(f"attack = {evil.attack}")
+        print(f"defense = {evil.defense}\n")
+
+    def do_attack(evil):
+        attack_strength = (random.randint(1, evil.attack))
+        return attack_strength
+    
+    def do_defend(evil, attack_strength):
+        defense_block = random.randint(1, evil.defense)
+        lost = attack_strength - defense_block
+        if lost < 0:
+            print("{evil.villain} blocked the attack!\n")
+        else:
+            evil.health -= lost
+            print(f"Monster lost {lost}. Now it has {evil.health} health.\n")
 
 player = user()
 player.display_stats()
-pa = player.do_attack()
-print(f"your attack was {pa}")
-player.do_defend(14)
-player.drink_potion()
-player.super_attack()
 player.flee()
+
+enemy = Monster()
+enemy.display_evil()
+
+print(enemy.do_attack())
+print(player.do_attack())
+enemy.do_defend(player.do_attack())
+
+
+
+pds = [player.do_attack(), player.drink_potion(), player.flee()]
+
+print(pds)
+for a in pds:
+    choose = int(input(f"enter a number to do {pds}"))
+    if choose == 0:
+        a = player.do_attack()
+    
+    elif choose == 1:
+        a = pds(2)
+    elif choose == 3:
+        a = pds(3)
+print(a)
