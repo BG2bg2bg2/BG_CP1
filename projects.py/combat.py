@@ -78,7 +78,7 @@ class user:
             print("You died by falling in a pit that was behind a log that you, yourself has setted up")
             print("You DIE GOOD LUCK NEXT TIME (if there is a next time)")
 class Monster:
-    def 
+    def
 
 player = user()
 player.display_stats()
