@@ -1,137 +1,158 @@
-#BG 1st combat DD vircion
-
+# BG 1st Combat DD Version
 import random
 
+class User:
+    def __init__(self):
+        self.name = input("Enter your name: ")
+
+        self.characters = ["Ranger", "Rogue", "Mage", "Assassin", "Knight"]
+
+        self.health_list  = [70, 55, 50, 45, 120]   
+        self.attack_list  = [50, 60, 55, 70, 30]    
+        self.defense_list = [25, 20, 20, 15, 40]    
+        self.speed_list   = [30, 40, 28, 45, 15]    
+        self.potion_list  = [20, 15, 25, 10, 35] 
 
 
-class user:
-    def __init__ (self):
-        self.name = input("enter your name: ")
-        characters = ["Ranger", "Rogue", "Mage", "Assasine", "Knight"]
 
-        health = [20,20,20,10,100]
-        attack = [55,20,50,20,70]
-        defense = [20,20,40,20,50]
-        speed = [30,33,34,40,10]
-        potion = [10, 10, 10, 5, 50]
 
-        for a in range(0,5):
-            print(f" {a} {characters [a]} health = {health[a]}, attack = {attack[a]} defense = {defense[a]} speed = {speed[a]}, potion = {potion[a]}")
 
-        self.character_index = int(input("Choose the number for the corosponding characters. (0-4): "))
 
-        self.class_name = characters[self.character_index]
-        self.health = health[self.character_index]
-        self.defense = defense[self.character_index]
-        self.attack = attack[self.character_index]
-        self.potion = potion[self.character_index]
-        self.speed = speed[self.character_index]
+        for i in range(5):
+            print(f"{i}. {self.characters[i]} : Health={self.health_list[i]}, "
+                  f"Attack={self.attack_list[i]}, Defense={self.defense_list[i]}, "
+                  f"Speed={self.speed_list[i]}, Potion={self.potion_list[i]}")
 
-    
+        while True:
+            try:
+                self.character_index = int(input("Choose your character (0–4): "))
+                if 0 <= self.character_index < 5:
+                    break
+                else:
+                    print("Pick a number between 0–4.")
+            except ValueError:
+                print("Please enter a number.")
+
+        self.class_name = self.characters[self.character_index]
+        self.health = self.health_list[self.character_index]
+        self.defense = self.defense_list[self.character_index]
+        self.attack = self.attack_list[self.character_index]
+        self.potion = self.potion_list[self.character_index]
+        self.speed = self.speed_list[self.character_index]
+
     def display_stats(self):
-        print(self.name)
-        print(f"{self.class_name}")
-        print(f"health = {self.health}")
-        print(f"defense = {self.defense}")
-        print(f"attack = {self.attack}")
-        print(f"potion strength = {self.potion}")
-        print(f"speed = {self.speed}\n")
+        print(f"\n{self.name} the {self.class_name}")
+        print(f"Health: {self.health}")
+        print(f"Defense: {self.defense}")
+        print(f"Attack: {self.attack}")
+        print(f"Potion: {self.potion}")
+        print(f"Speed: {self.speed}\n")
 
     def do_attack(self):
-        attack_strength = (random.randint(1, self.attack))
-        return attack_strength
-    
+        return random.randint(1, self.attack)
+
     def do_defend(self, attack_strength):
-        defense_block = random.randint(1, self.defense)
-        lost = attack_strength - defense_block
-        if lost < 0:
-            print("you blocked the attack!")
+        block = random.randint(1, self.defense)
+        lost = attack_strength - block
+        if lost <= 0:
+            print("You blocked the attack!")
         else:
             self.health -= lost
-            print(f"you lost {lost}. Now you have {self.health} health.")
+            print(f"You lost {lost} health. Now you have {self.health}.")
 
     def drink_potion(self):
-        health_gain = random.randint(1, self.potion)
-        self.health += health_gain
-        print(f"you gained {health_gain}. Now you have {self.health}")
+        gain = random.randint(1, self.potion)
+        self.health += gain
+        print(f"You healed {gain} HP. Now you have {self.health}.")
 
     def super_attack(self):
-        attack_strength = 2*random.randint(1, self.attack)
-        print(f"you did {attack_strength} damage by using your weight")
-        lose_life = attack_strength / random.randint(1, self.health)
-        a = round(lose_life)
-        self.health -= a
-        print(f"fun you lost {a} health now you have {self.health}")
+        damage = 2 * random.randint(1, self.attack)
+        print(f"You dealt {damage} damage with a super attack!")
+        backlash = random.randint(1, max(1, self.attack // 3))
+        self.health -= backlash
+        print(f"The recoil hurt you for {backlash} HP. You now have {self.health}.")
+        return damage
 
-    def flee(self):
+    def flee(self, enemy):
         run = random.randint(1, self.speed)
         if run == self.speed:
-            print("you ran with spikes on your heels and slowly killing the monster at your feet")
-            print("YOU SUCCESSFULY WON THE GAME!")
-            print("GAME OVER YOU WON")
-
-        elif run > self.speed/2:
-            print("You were climbing a mountain and making a land slide killing the monster but cutting yourself on jaged edges")
-            print("YOU beat that monster but now you face a new monster on the mountain")
-            print("want to continue your quest or jump off?")
-            print("Depends on how you look at it!!!")
+            print("You escaped and defeated the monster in your rush! YOU WIN!")
+            enemy.health = 0
+        elif run > self.speed / 2:
+            print("You escaped but got hurt escaping.")
+            self.health = 1
         else:
-            print("You died by falling in a pit that was behind a log that you, yourself has setted up")
-            print("You DIE GOOD LUCK NEXT TIME (if there is a next time)")
+            print("You tripped and the monster got you! You died.")
+            self.health = 0
+
+
 class Monster:
-    def __init__ (evil):
-        evil.monster_index = random.randint(0,4)
-        evil.villain_list = ["Werewolf", "Colosial Spider", "Rodent of Unusual Size", "'Venom'", "Dragon"]
-        evil.health_list = [40, 40, 20, 40, 200]
-        evil.attack_list = [110, 40, 100, 40, 140]
-        evil.defense_list = [10,10,20,10,25]
-        
-        evil.villains = evil.villain_list[evil.monster_index]
-        evil.health = evil.health_list[evil.monster_index]
-        evil.attack = evil.attack_list[evil.monster_index]
-        evil.defense = evil.defense_list[evil.monster_index]
+    def __init__(evil):
+         evil.names = ["Werewolf", "Colossal Spider", "Giant Rat", "Venom", "Dragon"]
+         evil.health_list = [90, 60, 30, 50, 220]
+         evil.attack_list = [50, 30, 25, 45, 70]
+         evil.defense_list = [20, 15, 10, 18, 30]
+
+         i = random.randint(0, 4)
+         evil.villains =  evil.names[i]
+         evil.health =  evil.health_list[i]
+         evil.attack =  evil.attack_list[i]
+         evil.defense =  evil.defense_list[i]
+
     def display_evil(evil):
-        print(evil.villains)
-        print(f"health = {evil.health}")
-        print(f"attack = {evil.attack}")
-        print(f"defense = {evil.defense}\n")
+        print(f"\nYou are facing a { evil.villains}!")
+        print(f"Health: { evil.health}, Attack: { evil.attack}, Defense: { evil.defense}\n")
 
-    def do_attack(evil):
-        attack_strength = (random.randint(1, evil.attack))
-        return attack_strength
-    
-    def do_defend(evil, attack_strength):
-        defense_block = random.randint(1, evil.defense)
-        lost = attack_strength - defense_block
-        if lost < 0:
-            print("{evil.villain} blocked the attack!\n")
+    def do_attack( evil):
+        return random.randint(1,  evil.attack)
+
+    def do_defend( evil, damage):
+        block = random.randint(1,  evil.defense)
+        lost = damage - block
+        if lost <= 0:
+            print(f"The { evil.villains} blocked your attack!")
         else:
-            evil.health -= lost
-            print(f"Monster lost {lost}. Now it has {evil.health} health.\n")
-
-player = user()
-player.display_stats()
-player.flee()
-
-enemy = Monster()
-enemy.display_evil()
-
-print(enemy.do_attack())
-print(player.do_attack())
-enemy.do_defend(player.do_attack())
+             evil.health -= lost
+             print(f"{ evil.villains} lost {lost} HP. It now has { evil.health} HP.\n")
 
 
+#  Main Game Loop 
+print("Welcome to DD!")
 
-pds = [player.do_attack(), player.drink_potion(), player.flee()]
+while True:
+    player = User()
+    player.display_stats()
+    enemy = Monster()
+    enemy.display_evil()
 
-print(pds)
-for a in pds:
-    choose = int(input(f"enter a number to do {pds}"))
-    if choose == 0:
-        a = player.do_attack()
-    
-    elif choose == 1:
-        a = pds(2)
-    elif choose == 3:
-        a = pds(3)
-print(a)
+    player_turn = random.choice([True, False])
+
+    while player.health > 0 and enemy.health > 0:
+        if player_turn:
+            action = input("Choose: a = attack\n s = super\n h = potion\n f = flee\n Your choice is: ").lower()
+            if action == "a":
+                enemy.do_defend(player.do_attack())
+            elif action == "s":
+                enemy.do_defend(player.super_attack())
+            elif action == "h":
+                player.drink_potion()
+            elif action == "f":
+                player.flee(enemy)
+            else:
+                print("Invalid choice.")
+                continue
+            player_turn = False
+        else:
+            player.do_defend(enemy.do_attack())
+            player_turn = True
+
+        if player.health <= 0:
+            print("YOU DIED! Game over.")
+        elif enemy.health <= 0:
+            print("You defeated the monster! YOU WON!")
+
+    # Play again?
+    play_again = input("\nDo you want to start a NEW GAME? (y/n): ").lower()
+    if play_again not in ("y", "yes"):
+        print(f"Thanks for playing DD with the {enemy.villains}!")
+        break
