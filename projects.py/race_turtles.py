@@ -1,13 +1,13 @@
 #BG 1st race the turtles
 
-import turtle
+import turtle as t
 import random
 import time
 
 
 
 #makes the screen
-screen = turtle.Screen()
+screen = t.Screen()
 screen.setup(900, 900)
 screen.title("Racing Five Turtles")
 
@@ -26,7 +26,6 @@ turtles = []
 #Makes the turtles
 
 for i in range(5):
-    t = turtle.Turtle()
     t.shape("turtle")
     t.color(colors[i])
     t.penup()
@@ -34,7 +33,7 @@ for i in range(5):
     turtles.append(t)
 
 # Marks the finish line
-a = turtle.Turtle()
+a = t.Turtle()
 a.hideturtle()
 a.speed(0)
 a.penup()
@@ -58,5 +57,5 @@ while race:
             break
     time.sleep(.01)
 
-turtle.done()
+t.done()
 
