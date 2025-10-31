@@ -4,58 +4,62 @@ import turtle as t
 import random
 import time
 
-
-
-#makes the screen
-screen = t.Screen()
-screen.setup(900, 900)
-screen.title("Racing Five Turtles")
-
-#colors for the turtles
-acolors = ["red", "yellow", "blue", "purple", "green", "orange", "brown"]
-#assines the colors
-colors = random.sample(acolors, 5)
-
-
-#how many steps the turtls take
-step = [1,2,3,4,5,6,7,8,9,10]
 turtles = []
-
-
-
-#Makes the turtles
-
-for i in range(5):
-    t.shape("turtle")
-    t.color(colors[i])
-    t.penup()
-    t.goto(-250, 100 - i * 50)
-    turtles.append(t)
-
-# Marks the finish line
-a = t.Turtle()
-a.hideturtle()
-a.speed(0)
-a.penup()
-a.goto(500, 250)
-a.pendown()
-a.pensize(5)
-a.color("black")
-a.right(90)
-a.forward(500)
-
 finish_line = 500
 
+def setup():
+    #make the screen
+    screen = t.Screen()
+    screen.setup(1400, 700)
+    screen.title("Racing Five Turtles")
+    #colors for the turtles
+    colors = ["red", "yellow", "blue", "purple", "green"]
 
-race = True
-while race:
-    for t in turtles:
-        t.forward(random.choice(step))
-        if t.xcor() >= finish_line:
-            race = False
-            print(f"The {t.pencolor()} turtle won!")
-            break
-    time.sleep(.01)
+    #draw the finish line
+    a = t.Turtle()
+    a.hideturtle()
+    a.speed(0)
+    a.penup()
+    a.goto((finish_line -1), 250)
+    a.pendown()
+    a.pensize(5)
+    a.color("black")
+    a.right(90)
+    a.forward(500)
 
+    #Create and draw the turtles on the starting line
+    for i in range(5):
+        a = t.Turtle()
+        a.shape("turtle")
+        a.color(colors[i])
+        a.penup()
+        a.goto(-250, 100 - i * 50)
+        a.showturtle()
+        turtles.append(a)
+
+#check for winner
+def winner(c_turtle):
+    if c_turtle.xcor() >= finish_line:
+        print(f"The {c_turtle.pencolor()} turtle won!")
+        return True
+    else:
+        return False
+
+#run the race
+def run():
+    #start race
+    racer = True
+    while racer:
+        for a_turtle in turtles:
+            #randomly choose how big the step each turtle takes
+            a_turtle.forward(random.randint(3,15))
+            #help check for winner
+            if winner(a_turtle) == True:
+                racer = False
+                break
+        time.sleep(.01)
+
+#main program
+setup()
+run()
 t.done()
-
