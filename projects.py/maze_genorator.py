@@ -43,6 +43,8 @@ def draw_maze(H, V):
     screen.setworldcoordinates(-line_width, -line_width,
                                columns * (box_size + line_width),
                                rows * (box_size + line_width))
+    
+    
 
     screen.tracer(False)
     tu = t.Turtle()
