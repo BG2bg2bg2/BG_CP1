@@ -32,6 +32,7 @@ for c in range(columns + 1):
 visited = [[False for c in range(columns)] for r in range(rows)]
 
 
+
 def draw_maze(H, V):
     # setup screen size and turtle properties
     screen = t.Screen()
@@ -42,6 +43,7 @@ def draw_maze(H, V):
     screen.setworldcoordinates(-line_width, -line_width,
                                columns * (box_size + line_width),
                                rows * (box_size + line_width))
+
     screen.tracer(False)
     tu = t.Turtle()
     tu.hideturtle()
@@ -63,6 +65,7 @@ def draw_maze(H, V):
                 x1 = c * box_size
                 x2 = (c + 1) * box_size
                 draw_line(x1, y, x2, y)
+            
     # write all vertical walls
     for r in range(rows):
         y1 = (rows - r - 1) * box_size
@@ -106,6 +109,7 @@ path(0, 0)
 # Remove entrance and exit walls
 H[0][0] = False
 H[rows][columns - 1] = False
+
 
 # Draw maze using turtle
 draw_maze(H, V)
