@@ -34,6 +34,18 @@ print(person.keys())
 person_two["SO"] = "Carry"
 person["age"] += 1
 print(person_two.items())
+
+avatar = {
+    "earth": {
+        "toph": "Sounds like Tough and thats just what I am!"
+    },
+    "Water": {
+        "Katara": "Itt just game me so much Hope",
+        "Sokka": "I used to be boomerang guy"
+    }
+}
+
+print(avatar['earth']['toph'])
 #How do dictionaries simply variables in a project?
 
 
