@@ -16,6 +16,7 @@ V = []
 
 # for each row: add a list of True values (walls exist)
 for r in range(rows + 1):
+    #list for were the rows are at
     row = []
     for c in range(columns):
         row.append(True)
@@ -23,6 +24,7 @@ for r in range(rows + 1):
 
 # for each column: add a list of True values (walls exist)
 for c in range(columns + 1):
+    #a list for columns
     column = []
     for r in range(rows):
         column.append(True)

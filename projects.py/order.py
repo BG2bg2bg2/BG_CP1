@@ -1,67 +1,40 @@
 #BG 1st order python
 
-cost = .76
+tax = .5
 
-#Create a program that allows a user to order items off a menu.
-
-
-#  Menu items need to be stored in a dictionary with their prices as the value.
-
-num_drinks = {
-    "root beer": .92,
-    "Mountain dew": .23,
-    "Slerpy": .24,
-    "Dr pepper": .98
+food = {
+    "fries": 3,
+    "chicken nuggets": 2.3
 }
-drink = [num_drinks]
 
+food1 = {
+    "hamberger": 3,
+    "cheesberger": 2,
+    "salad": 3
+}
 
-#  Users need to be able to order a drink, a main course and two side dishes.
+drinks = {
+    "root beer": .4,
+    "sprite": .9,
+    "DR Pepper": 2.3,
+    "MTN Dew": .8,
+    "Coca Cola": 2.1 
+}
 
-for a in num_drinks:
-    choice = input("Enter a leter a-f")
-    print("a = choose a drink")
-    if choice == "a" or choice == "A":
-        print(num_drinks["root beer"])
+shopping_list = {}
 
-# At the end the program needs to repeat back to the user their full order, and the total cost. 
-
-
-shop = []
 while True:
-    print("\n1 = add item.\n2 = remove item. \n3 = show list.\n4 = clear. \n5 = Quit")
-    num = input("\nchoose a number 1-5 ")
-
-    if num == "1":
-        item = input("\nwhat is the item you want to add? ")
-        shop.append(item)
-        print(f"\n{item} has been added")
-
-    if num == "2":
-        item = input("\nwhat item do you want to remove? ")
-        if item in shop:
-            shop.remove(item)
-            print(f"\n{item} removed")
-        else:
-            print(f"\n{item} not found")
-
-    if num == "3":
-        if shop:
-            for a in enumerate(shop):
-                #print({item}, {a})
-                print("\n not going to work")
-                print(list(shop))
-        else:
-            print("\nNo item on")
-
-    if num == "4":
-        print("\nclear")
-        if shop:
-            shop.clear()
-            print("cleared")
-    if num == "5":
-        print(f"\nQuiting")
+    for a in food:
+        print("curent list of food", food1)
+        print("curent list of sides", food)
+        print("curent list of drinks", drinks)
+        if a in shopping_list >0:
+            print("shopping list", shopping_list)
+        choice = input("enter 'choose', 'pay', 'rid': ")
+    if choice == "pay":
+        print()
         break
-    else:
-        print("\ntry again")    
-    
+    elif choice in ['choose', 'rid']:
+        f = input(f"enter the name of the food: ")
+
+        
