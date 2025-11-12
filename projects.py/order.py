@@ -1,21 +1,21 @@
 #BG 1st order python
 
 tax = .5
-
+#food for the sides
 sides = {
     "fries": {"cost": 3, "amount": 0},
     "chicken nuggets":{"cost": 2.3, "amount": 0},
     "roles": {"cost": 2, "amount": 0},
     "muffins": {"cost": 2.9, "amount": 0}
 }
-
+#main food corse
 main_corse = {
     "hamberger": {"cost": 3, "amount": 0},
     "cheesberger": {"cost": 2.3, "amount": 0},
     "salad": {"cost": 3.7, "amount": 0},
     "PBJ": {"cost": 4, "amount": 0}
 }
-
+#drinks
 drinks = {
     "root beer": .4,
     "sprite": .9,
@@ -27,7 +27,7 @@ drinks = {
 shop = []
 while True:
     
-    print("\n1 = choose from the sides\n2 = remove item. \n3 = show list.\n4 = clear. \n5 = Quit")
+    print("\n1 = choose from the sides\n2 = choose from the main corse. \n3 = choose from the drinks.\n4 = check out")
     num = input("\nchoose a number 1-5 ")
 
     if num == "1":
@@ -41,10 +41,10 @@ while True:
         quantity = int(input("enter quantity: "))
 
         if action == "add":
-            shop[sides] = order
+            sides[shop] = order
         else:
-            if sides in order and [book] >= quantity:
-                inventory[book] -= quantity
+            if sides in order:
+                shop.append(order)
             else:
                 print("Error: not enough stock or book not found")
     else:
