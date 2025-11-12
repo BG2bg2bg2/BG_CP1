@@ -2,39 +2,79 @@
 
 tax = .5
 
-food = {
-    "fries": 3,
-    "chicken nuggets": 2.3
+sides = {
+    "fries": {"cost": 3, "amount": 0},
+    "chicken nuggets":{"cost": 2.3, "amount": 0},
+    "roles": {"cost": 2, "amount": 0},
+    "muffins": {"cost": 2.9, "amount": 0}
 }
 
-food1 = {
-    "hamberger": 3,
-    "cheesberger": 2,
-    "salad": 3
+main_corse = {
+    "hamberger": {"cost": 3, "amount": 0},
+    "cheesberger": {"cost": 2.3, "amount": 0},
+    "salad": {"cost": 3.7, "amount": 0},
+    "PBJ": {"cost": 4, "amount": 0}
 }
 
 drinks = {
     "root beer": .4,
     "sprite": .9,
-    "DR Pepper": 2.3,
     "MTN Dew": .8,
     "Coca Cola": 2.1 
 }
 
-shopping_list = {}
 
+shop = []
 while True:
-    for a in food:
-        print("curent list of food", food1)
-        print("curent list of sides", food)
-        print("curent list of drinks", drinks)
-        if a in shopping_list >0:
-            print("shopping list", shopping_list)
-        choice = input("enter 'choose', 'pay', 'rid': ")
-    if choice == "pay":
-        print()
-        break
-    elif choice in ['choose', 'rid']:
-        f = input(f"enter the name of the food: ")
+    
+    print("\n1 = choose from the sides\n2 = remove item. \n3 = show list.\n4 = clear. \n5 = Quit")
+    num = input("\nchoose a number 1-5 ")
 
-        
+    if num == "1":
+        print("\nCurrent sides:", sides)
+    action = input("enter 'add', 'pay', or 'next': ").lower()
+
+    if action == "next":
+        continue
+    elif action in ['add', 'pay']:
+        order = input("enter your order: ")
+        quantity = int(input("enter quantity: "))
+
+        if action == "add":
+            shop[sides] = order
+        else:
+            if sides in order and [book] >= quantity:
+                inventory[book] -= quantity
+            else:
+                print("Error: not enough stock or book not found")
+    else:
+        print("Invalid action. Please try again")
+        continue
+
+    if num == "2":
+        item = input("\nwhat item do you want to remove? ")
+        if item in shop:
+            shop.remove(item)
+            print(f"\n{item} removed")
+        else:
+            print(f"\n{item} not found")
+
+    if num == "3":
+        if shop:
+            for a in enumerate(shop):
+                #print({item}, {a})
+                print("\n not going to work")
+                print(list(shop))
+        else:
+            print("\nNo item on")
+
+    if num == "4":
+        print("\nclear")
+        if shop:
+            shop.clear()
+            print("cleared")
+    if num == "5":
+        print(f"\nQuiting")
+        break
+    else:
+        print("\ntry again")    
