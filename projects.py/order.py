@@ -1,86 +1,151 @@
 #BG 1st order python
 
-tax = .5
-#food for the sides
-#dictonary
+# universal variable for tax
+tax = 0.05  # 5% tax
+
+
+#dictionary for foods for the sides
 sides = {
-    #diction in dictionary
-     "1": {"name": "fries", "cost": 3},
+    # dictionary in dictionary
+    "1": {"name": "fries", "cost": 3},
     "2": {"name": "chicken nuggets", "cost": 3},
-    "3": {"name": "roles", "cost": 3},
+    "3": {"name": "rolls", "cost": 3},
     "4": {"name": "muffins", "cost": 3}
 }
-#main food corse
-main_corse = {
-    "hamberger": {"cost": 3},
-    "cheesberger": {"cost": 2.3,},
+
+# main food course dictionary
+main_course = {
+    "hamburger": {"cost": 3},
+    "cheeseburger": {"cost": 2.3},
     "salad": {"cost": 3.7},
     "PBJ": {"cost": 4}
 }
-#drinks
+
+# drinks dictionary
 drinks = {
-    "root beer": .4,
-    "sprite": .9,
-    "MTN Dew": .8,
+    "root beer": 0.4,
+    "sprite": 0.9,
+    "MTN Dew": 0.8,
     "Coca Cola": 2.1
 }
 
-def display_menu(menu):
-    for a in menu.keys():
-        print(a, menu.get(a).get("name"))
 
+# function to display menu
+def display_sides(menu):
+    print("\nSides Menu:")
+    for key in menu.keys():
+        #show the number
+        print(f"{key}. {menu[key]['name']} (${menu[key]['cost']})")
+
+
+# start order system
 order = []
+
 while True:
-    display_menu(sides)
-    break
-    print("\n1 = choose from the sides\n2 = choose from the main corse. \n3 = choose from the drinks.\n4 = check out")
-    num = input("\nchoose a number 1-5 ")
+    #display options for ordering
+    print("\n1 = choose from the sides")
+    print("2 = choose from the main course")
+    print("3 = choose from the drinks")
+    print("4 = remove item")
+    print("5 = show list of ordered items")
+    print("6 = pay and exit")
 
+
+    #promt user to choose a number in the options
+    num = input("\nChoose a number 1-6: ")
+
+    # SIDES choice
     if num == "1":
-        print("\nCurrent sides:", sides)
-    action = input("enter '1' add, '2' dislay menu, or '3' next: ").lower()
-
-    if action == "1":
-        continue
-    elif action in ['add', 'pay']:
-        item = input("enter your order: ")
-        quantity = int(input("enter quantity: "))
-
-        if action == "add":
-            sides[order] = ite
+        display_sides(sides)
+        s = input("Choose a side number: ")
+        #see if the choice is in the side dictionary
+        if s in sides:
+            #puts the wanted option into the order list
+            order.append(sides[s]["name"])
+            print(f"Added {sides[s]['name']}")
         else:
-            if sides in item:
-                shop.append(order)
-            else:
-                print("Error: not enough stock or book not found")
-    else:
-        print("Invalid action. Please try again")
-        continue
+            #if the option doesnt exist restart
+            print("That side doesn't exist.")
+            continue
 
-    if num == "2":
-        item = input("\nwhat item do you want to remove? ")
-        if item in shop:
-            shop.remove(item)
-            print(f"\n{item} removed")
+    # MAIN COURSE
+    elif num == "2":
+        #print the main course options
+        print("\nMain Course Options:")
+        for k, v in main_course.items():
+            print(f"- {k} (${v['cost']})")
+        m = input("Enter your main course: ")
+        if m in main_course:
+            order.append(m)
+            print(f"Added {m}")
         else:
-            print(f"\n{item} not found")
+            print("That's not on the menu.")
 
-    if num == "3":
-        if shop:
-            for a in enumerate(shop):
-                #print({item}, {a})
-                print("\n not going to work")
-                print(list(shop))
+    # DRINKS
+    elif num == "3":
+        print("\nDrinks Menu:")
+        for k, v in drinks.items():
+            print(f"- {k} (${v})")
+        d = input("Enter your drink: ")
+        if d in drinks:
+            order.append(d)
+            print(f"Added {d}")
         else:
-            print("\nNo item on")
+            print("Drink not available.")
 
-    if num == "4":
-        print("\nclear")
-        if shop:
-            shop.clear()
-            print("cleared")
-    if num == "5":
-        print(f"\nQuiting")
+    # REMOVE ITEM
+    elif num == "4":
+        item = input("What item do you want to remove? ")
+        if item in order:
+            order.remove(item)
+            print(f"{item} removed.")
+        else:
+            print("That item is not in your order.")
+
+    # SHOW ORDER
+    elif num == "5":
+        if order:
+            print("\nYour current order:")
+            for i, o in enumerate(order, 1):
+                print(f"{i}. {o}")
+        #if there is nothing in the order show empty order
+        else:
+            print("Your order is empty.")
+
+    # PAY AND EXIT
+    elif num == "6":
+        #if user not ordered then show nothing ordered
+        if not order:
+            print("You haven't ordered anything yet!")
+            #restart loop
+            continue
+        
+        #start paying proses
+        print("\nCalculating total...")
+        total = 0
+
+        #loop through what user ordered and the cost of each item
+        for o in order:
+            for s in sides.values():
+                #if there is any sides do the following
+                if s["name"] == o:
+                    #calculates how much you have and need to pay for sides
+                    total += s["cost"]
+                #if there is any main course options do the following
+            for m in main_course.keys():
+                if m == o:
+                    #calculate the amount in the main course
+                    total += main_course[m]["cost"]
+            for d in drinks.keys():
+                #if there is any drinks do the folloing
+                if d == o:
+                    #calculat the amount of drink costs
+                    total += drinks[d]
+
+        total += total * tax
+        print(f"\nYour total (with tax): ${round(total, 2)}")
+        print("Thank you for your order!")
         break
+
     else:
-        print("\ntry again")
+        print("Invalid choice. Try again.")
