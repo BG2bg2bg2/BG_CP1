@@ -1,5 +1,6 @@
 #BG 1st *args and **kwargs
 
+#hi
 def hello(*names, **kwargs):
     print(type(names))
     print(kwargs)
