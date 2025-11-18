@@ -1,14 +1,5 @@
 #BG 1st *args and **kwargs
 
-
-#def hello(name = "Ty", age = 29):
- #   return f"hello {name}!"
-
-
-#print(hello())
-#(hello("trey", 19))
-
-
 def hello(*names, **kwargs):
     print(type(names))
     print(kwargs)
@@ -16,58 +7,31 @@ def hello(*names, **kwargs):
     for n in names:
         print(f"hello {n} {kwargs['last_name']}")
 
-hello("B", "G", "v", "x", "L", last_name = "G", dad = "L", num_dogs = 3)
+hello("B", "G", "v", "x", "L", last_name="G", dad="L", num_dogs=3)
+
 
 def full_name(age, **names):
     if 'middle' in names.keys():
-        return f"{names["first"]} {names ["middle"]} {names ["last"]} is {age}"
+        return f"{names['first']} {names['middle']} {names['last']} is {age}"
     else:
-        return f"{names["first"]} {names ['last']} is {age}"
-    
-print(full_name(age = "???", first = "karo", last = "sensa"))
-print(full_name(age = "so old", first = "albus", middle = "brian", last = "dubuldore"))
+        return f"{names['first']} {names['last']} is {age}"
+
+print(full_name(age="???", first="karo", last="sensa"))
+print(full_name(age="so old", first="albus", middle="brian", last="dubuldore"))
 
 
 def summary(**story):
     sum = ""
     if "name" in story.keys():
-        sum += f"{story["name"]} is the main character of the story"
-    if "place" is story.keys():
-        sum += f"the stroy takes place in {story['placey']}."
+        sum += f"{story['name']} is the main character of the story. "
+    if "place" in story.keys():
+        sum += f"The story takes place in {story['place']}. "
     if "confict" in story.keys():
-        sum += f"the problem is {story["confict"]}."
-
+        sum += f"The problem is {story['confict']}."
     return sum
-print(summary(name = "luke skywalker", place = "galaxy far far away", confict = "rescue the princes"))
-print(summary(name = "Harry potter", confict = "Kill the dark lord"))
-#What are positional arguments?
 
-#write the first permitare funtion once
-
-#is an argument that you know what is goinging on depending of whant spot the're in
-#they come first
-
-#Positional arguments are arguments that must be passed to a function in the correct order.
-#based on their position.
-
-
-
-#What are keyword arguments?
-#they come after the postional arguments
-
-#Keyword arguments are arguments you pass to a function by using the parameter’s name, so order does not matter.
-
-
-#How do you set a default parameter value?
-#when you dont have to set a value, when you call it and it does not give you something.
-
-#You give the parameter a value in the function definition.
-#If the caller doesn't give a value, Python uses the default.
-
-
-#How do alter a function to take in an unknown number of arguments?
-#kwargs
-
+print(summary(name="luke skywalker", place="galaxy far far away", confict="rescue the princess"))
+print(summary(name="Harry potter", confict="Kill the dark lord"))
 
 
 chat = {
@@ -108,7 +72,7 @@ chat = {
             "add_numbers(1, 2, 3)\n\n"
             "def describe_person(**kwargs):\n"
             "    print(kwargs)\n"
-            "describe_person(name='Brett', age=15)\n"
+            "describe_person(name='Bob', age=100)\n"
         )
 }
 
