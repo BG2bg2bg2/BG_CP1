@@ -1,7 +1,8 @@
 #BG 1st flexible calculator
 
 #statistics for the advarage
-
+import statistics
+import math
 #list of numbers user puts in it
 
 #num 
@@ -14,10 +15,10 @@ def is_float(value):
     except ValueError:
         return False
 
+while True:
+    user_input = input("Enter a number: ")
 
-user_input = input("Enter a number: ")
-
-if is_float(user_input):
-    print("That is a float (or a valid number).")
-else:
-    print("That is NOT a number.")
+    if is_float(user_input):
+        print("That is a float (or a valid number).")
+    else:
+        print("That is NOT a number.")
