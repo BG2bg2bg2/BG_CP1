@@ -1,24 +1,37 @@
 #BG 1st flexible calculator
 
-#statistics for the advarage
+#bring in a library
 import statistics
-import math
-#list of numbers user puts in it
 
-#num 
+num = []
 
-#for num in list(numbers):
-def is_float(value):
-    try:
-        float(value)
-        return True
-    except ValueError:
-        return False
-
+#funtion to do keep the numbers
+def op(*oper, **opor):
+    print(opor)
+    for o in oper:
+        print(f"number: {o} {opor['oporation']}")
+print(f"avalible operations: ",(op ()))
+#while the code is true do the folowing
 while True:
-    user_input = input("Enter a number: ")
+    #ask the user to enter what they want to do
+    print("Availible operations: sum, average, max, min, product")
+    type_of_math = input("enter what you want to do: ")
+    #if the user input is not true 
+        #restart
+    #while the code is not done
+    #ask the user to enter the numbers until user enters done
+    #"""display result"""
+    #ask the user to restart or quit
 
-    if is_float(user_input):
-        print("That is a float (or a valid number).")
-    else:
-        print("That is NOT a number.")
+    def summary(**story):
+    sum = ""
+    if "name" in story.keys():
+        sum += f"{story['name']} is the main character of the story. "
+    if "place" in story.keys():
+        sum += f"The story takes place in {story['place']}. "
+    if "confict" in story.keys():
+        sum += f"The problem is {story['confict']}."
+    return sum
+
+print(summary(name="luke skywalker", place="galaxy far far away", confict="rescue the princess"))
+print(summary(name="Harry potter", confict="Kill the dark lord"))
