@@ -1,37 +1,79 @@
-#BG 1st flexible calculator
+#BG 1st Flexible Calculator
 
-#bring in a library
 import statistics
 
-num = []
+def operate(*args, **kwargs):
+    #kwargs are used to send the operation the user selected to the cp
+    operation = kwargs.get("operation", "sum")  #default operation is sum
 
-#funtion to do keep the numbers
-def op(*oper, **opor):
-    print(opor)
-    for o in oper:
-        print(f"number: {o} {opor['oporation']}")
-print(f"avalible operations: ",(op ()))
-#while the code is true do the folowing
+    #args are used to send multiple numbers to the function
+    if operation == "sum":
+        return sum(args)
+
+    elif operation == "average":
+        return statistics.mean(args)
+
+    elif operation == "max":
+        return max(args)
+
+    elif operation == "min":
+        return min(args)
+
+    elif operation == "product":
+        product = 1
+        for n in args:
+            product *= n
+        return product
+
+
+def collect_numbers():
+    nums = []
+    while True:
+        #Ask the user for numbers until they type "done"
+        entry = input("Enter a number or type 'done': ")
+        if entry.lower() == "done":
+            break
+        try:
+            #Convert inputs to floats
+            nums.append(float(entry))
+        except:
+            print("Invalid number. Try again.")
+    return nums
+
+
+#MAIN LOOP
 while True:
-    #ask the user to enter what they want to do
-    print("Availible operations: sum, average, max, min, product")
-    type_of_math = input("enter what you want to do: ")
-    #if the user input is not true 
-        #restart
-    #while the code is not done
-    #ask the user to enter the numbers until user enters done
-    #"""display result"""
-    #ask the user to restart or quit
 
-    def summary(**story):
-    sum = ""
-    if "name" in story.keys():
-        sum += f"{story['name']} is the main character of the story. "
-    if "place" in story.keys():
-        sum += f"The story takes place in {story['place']}. "
-    if "confict" in story.keys():
-        sum += f"The problem is {story['confict']}."
-    return sum
+    #Show available operations
+    print("\nAvailable operations: sum, average, max, min, product")
 
-print(summary(name="luke skywalker", place="galaxy far far away", confict="rescue the princess"))
-print(summary(name="Harry potter", confict="Kill the dark lord"))
+    #Ask the user what operation they want to perform
+    op_choice = input("Enter the operation you want: ").lower()
+
+    #If choice invalid → restart
+    if op_choice not in ["sum", "average", "max", "min", "product"]:
+        print("Invalid operation. Try again.")
+        continue
+
+    print("\nEnter numbers. Type 'done' when finished.")
+
+    #collecting numbers and converting
+    numbers = collect_numbers()
+
+    if len(numbers) == 0:
+        print("No numbers entered. Restarting...")
+        continue
+
+    #Compute result and print it
+    result = operate(*numbers, operation=op_choice)
+
+    print("\n--- RESULT ---")
+    print(f"Operation: {op_choice}")
+    print(f"Numbers: {numbers}")
+    print(f"Result: {result}")
+    print("--------------")
+
+    #Ask the user if they want to restart or quit
+    again = input("Type 'restart' to do another calculation or anything else to quit: ")
+    if again.lower() != "restart":
+        break
