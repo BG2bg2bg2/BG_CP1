@@ -46,6 +46,8 @@
 # UIT,
 # HIPOS]
 
+#a
+
 #funtion of player turns
     #if player on earth
         #if player has 5 ores or more
