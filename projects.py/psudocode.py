@@ -4,26 +4,34 @@ import random as r
 #Data
 #List of rooms available to visit
 #Rooms are described by a dictionary of 9 rooms with the following values
-def rooms(**hi):
-    room = {
-    room1: "Earth"
-    room2: "LA"
-    room3: "Ua"
-    room4: "Quip"
-    room6: "LASS"
-    room7: "IPLA"
-    room8: "BLAT"
-    room9: "Uit"
-    room10: "HIPOS"
-    }
-    return room
+room = [
+    "Earth",
+    "LA",
+    "Ua",
+    "Quip",
+    "LASS",
+    "IPLA",
+    "BLAT",
+    "Uit",
+    "HIPOS"]
+
+def rooms():
+    for r, room_names in enumerate(room, start-1):
+        print(f"{r}: {room_names}")
+   
 #	Description is text displayed to user
 #	Elements are the artifacts in the room like weapons and shields
 #	Enemies must be fought or run from but if user survives players stats upgrades randomly
 
+def roomers():
+    return[
+        {"room": "Earth", "stuff": ["note", "gun"], "enemy": None},
+    ]
+
 #Elements are a dictionary with the following values which, which change user stats
-user_name = input("enter a name for your character")
+
 def user_stats():
+    user_name = input("enter a name for your character")
 #Name,
     user = {
     "name": user_name,
@@ -39,11 +47,13 @@ def user_stats():
     return user
 
 #Only one element can be used per battle.
-
-enter = input("A")
-if enter == "A":
-    for a in rooms():
-        print(rooms)
+while True:
+    enter = input("A")
+    if enter == "A" or enter == "a":
+        for a in rooms():
+            print(rooms)
+    else:
+        continue
 
 #Player and enemies are described by a dictionary named players.
 #Set user’s attributes
@@ -139,4 +149,4 @@ if enter == "A":
  #   Choose a number for going into a room with that same number to go into
   #  Call visit room(room number)
    # If user dead break
-
+    

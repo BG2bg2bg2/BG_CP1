@@ -61,7 +61,7 @@ chat = {
             "def greet(name='Guest'):\n"
             "    print('Hello,', name)\n"
             "greet()\n"
-            "greet('Brett')\n"
+            "greet('Hi')\n"
         ),
 
     "How do you alter a function to take in an unknown number of arguments?": 
