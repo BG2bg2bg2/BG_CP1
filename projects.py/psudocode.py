@@ -7,18 +7,18 @@ import random as r
 room = [
     "Earth",
     "LA",
-    "Ua",
+    "UA",
     "Quip",
     "LASS",
     "IPLA",
     "BLAT",
     "Uit",
-    "HIPOS"]
-
+    "HIPOS"
+    ]
 def rooms():
-    for r, room_names in enumerate(room, start-1):
-        print(f"{r}: {room_names}")
-   
+    for r, room_names in enumerate(room, start = 1):
+        print(f'{r}: {room_names}')
+
 #	Description is text displayed to user
 #	Elements are the artifacts in the room like weapons and shields
 #	Enemies must be fought or run from but if user survives players stats upgrades randomly
@@ -26,7 +26,17 @@ def rooms():
 def roomers():
     return[
         {"room": "Earth", "stuff": ["note", "gun"], "enemy": None},
+        {"room": "LA", "stuff": ["jetpack", "note"], "enemy": None},
+        {'room': 'UA', 'stuff': [], 'enemy': "scout"},
+        {'room': 'Quip', 'stuff': [], "enemy": 'friends'},
+        {'room': 'LASS', 'stuff': [], 'enemy': 'GLARB'},
+        {'room': 'IPLA', 'stuff': [], 'enemy': "scout"},
+        {'room': 'BLAT', 'stuff': ['book'], 'enemy': None},
+        {'room': 'Uit', 'stuff': ['ball_o_shield'], 'enemy': None},
+        {'room': 'HIPOS', 'stuff': [], 'enemy': 'BOSS'}
     ]
+
+
 
 #Elements are a dictionary with the following values which, which change user stats
 
@@ -46,15 +56,12 @@ def user_stats():
     }
     return user
 
-#Only one element can be used per battle.
-while True:
-    enter = input("A")
-    if enter == "A" or enter == "a":
-        for a in rooms():
-            print(rooms)
-    else:
-        continue
+#def reset():
+#    player = user_stats()
+ #   roomer = roomers
 
+
+#Only one element can be used per battle
 #Player and enemies are described by a dictionary named players.
 #Set user’s attributes
 #health = 30
@@ -100,8 +107,15 @@ while True:
        # Else if leave item  do nothing.
 
 #    Main loop
+user_health = 90
+while user_health >0:
  #   While user lives
-  #  Display rooms
+    #  Display rooms
+    rooms()
+    choose = input("enter a letter to enter a room")
+    if choose == "a":
+        for a in roomers():
+            print(a)
    # If user enters room 1
     #    display you enter a hidden place on Earth and you see a note and a gun you go to the gun first and are asked if you want to pick it up then you go to read the note
     #    If user enters room 2
@@ -149,4 +163,4 @@ while True:
  #   Choose a number for going into a room with that same number to go into
   #  Call visit room(room number)
    # If user dead break
-    
+        user_health = -100
