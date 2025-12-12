@@ -1,166 +1,172 @@
-#BG 1st psudocode to code
+#BG 1st pseudocode to code with persistent room state and enemy boosts
 
 import random as r
-#Data
-#List of rooms available to visit
-#Rooms are described by a dictionary of 9 rooms with the following values
-room = [
-    "Earth",
-    "LA",
-    "UA",
-    "Quip",
-    "LASS",
-    "IPLA",
-    "BLAT",
-    "Uit",
-    "HIPOS"
-    ]
+
+# Data
+room = ["Earth", "LA", "UA", "Quip", "LASS", "IPLA", "BLAT", "Uit", "HIPOS"]
+
+# Display all rooms
 def rooms():
-    for r, room_names in enumerate(room, start = 1):
-        print(f'{r}: {room_names}')
+    for i, room_name in enumerate(room, start=1):
+        print(f'{i}: {room_name}')
 
-#	Description is text displayed to user
-#	Elements are the artifacts in the room like weapons and shields
-#	Enemies must be fought or run from but if user survives players stats upgrades randomly
-
+# Room data
 def roomers():
-    return[
+    return [
         {"room": "Earth", "stuff": ["note", "gun"], "enemy": None},
         {"room": "LA", "stuff": ["jetpack", "note"], "enemy": None},
-        {'room': 'UA', 'stuff': [], 'enemy': "scout"},
-        {'room': 'Quip', 'stuff': [], "enemy": 'friends'},
-        {'room': 'LASS', 'stuff': [], 'enemy': 'GLARB'},
-        {'room': 'IPLA', 'stuff': [], 'enemy': "scout"},
-        {'room': 'BLAT', 'stuff': ['book'], 'enemy': None},
-        {'room': 'Uit', 'stuff': ['ball_o_shield'], 'enemy': None},
-        {'room': 'HIPOS', 'stuff': [], 'enemy': 'BOSS'}
+        {"room": "UA", "stuff": [], "enemy": "scout"},
+        {"room": "Quip", "stuff": [], "enemy": 'friends'},
+        {"room": "LASS", "stuff": [], "enemy": 'GLARB'},
+        {"room": "IPLA", "stuff": [], "enemy": "scout"},
+        {"room": "BLAT", "stuff": ['book'], "enemy": None},
+        {"room": "Uit", "stuff": ['ball_o_shield'], "enemy": None},
+        {"room": "HIPOS", "stuff": [], "enemy": 'BOSS'}
     ]
 
-
-
-#Elements are a dictionary with the following values which, which change user stats
-
+# User stats
 def user_stats():
-    user_name = input("enter a name for your character")
-#Name,
-    user = {
-    "name": user_name,
-    #health
-    "health": 90,
-    #speed
-    "Speed":2,
-    #defence
-    "defence":5,
-    #stength
-    "stength":10
+    user_name = input("Enter a name for your character: ")
+    return {
+        "name": user_name,
+        "health": 90,
+        "speed": 2,
+        "defence": 5,
+        "strength": 10,
+        "items": []
     }
-    return user
 
-#def reset():
-#    player = user_stats()
- #   roomer = roomers
+# Item boosts
+item_effects = {
+    "note": {"defence": r.randint(2, 9)},
+    "gun": {"strength": r.randint(3, 9)},
+    "jetpack": {"speed": r.randint(5, 9)},
+    "book": {"strength": r.randint(4, 9), "defence": r.randint(5, 10)},
+    "ball_o_shield": {"defence": r.randint(4, 9)}
+}
 
+# Boost stats from items
+def boost_stats(player, item):
+    if item in item_effects:
+        boosts = item_effects[item]
+        for stat, val in boosts.items():
+            player[stat] += val
+        print(f"{item} boosts your stats: {boosts}")
 
-#Only one element can be used per battle
-#Player and enemies are described by a dictionary named players.
-#Set user’s attributes
-#health = 30
-#Stealth = 0
-#Speed = 2,
-#Defence = 3
-#Strength = 7
+# Boost stats from defeating enemies
+enemy_boosts = {
+    "scout": {"strength": r.randint(1, 10), "speed": r.randint(0, 2)},
+    "friends": {"health": r.randint(1,20), "speed": r.randint(1,20),"defence": r.randint(1,20) ,"strength": r.randint(1,20)},
+    "GLARB": {"health": r.randint(100,200), "speed": r.randint(100,200),"defence": r.randint(100,200) ,"strength": r.randint(100,200)},
+    "BOSS": {"health": r.randint(10,20) * 6, "speed": r.randint(10,20) * 6,"defence": r.randint(10,20) * 6 ,"strength": r.randint(10,20) * 6}
+}
 
-#Boss attributes
+def boost_from_enemy(player, enemy_name):
+    if enemy_name in enemy_boosts:
+        boosts = enemy_boosts[enemy_name]
+        for stat, val in boosts.items():
+            player[stat] += val
+        print(f"Defeating {enemy_name} boosts your stats: {boosts}")
 
-#	Health 70
-#	Stealth = 3
-#	Speed = 3
-#	Defence = 2
-#	Strength = 30
+# Enemy stats
+def enemy_stats(enemy):
+    if enemy == "scout": return {"health": 30, "speed": 1, "defence": 1, "strength": 5}
+    if enemy == "friends": return {"health": 10, "speed": 10, "defence": 10, "strength": 10}
+    if enemy == "GLARB": return {"health": 100, "speed": 300, "defence": 0, "strength": 34543}
+    if enemy == "BOSS": return {"health": 70, "speed": 3, "defence": 2, "strength": 30}
 
-#Enemy 3 = GLARB
-#	Health = 100
-#	Stealth = 100
-#	Speed = 300
-#	Defence = 200
-#	Strength = 34543
-#Avoid GLARB!!!!!!!!
+# Combat
+def do_combat(player, enemy_name):
+    enemy = enemy_stats(enemy_name)
+    print(f"Combat begins against {enemy_name}!")
+    while player["health"] > 0 and enemy["health"] > 0:
+        # player attack
+        player_hit = r.randint(1, player["strength"] + player["speed"] * 2)
+        enemy["health"] -= player_hit
+        print(f"You hit {enemy_name} for {player_hit} damage.")
+        if enemy["health"] <= 0:
+            print(f"You defeated {enemy_name}!")
+            boost_from_enemy(player, enemy_name)  # Boost stats on enemy defeat
+            return
 
-#Functions:
-#visit_room(room_number)#
-#	Display room description 
-#	If enemy in room do combat
-#	If item in room do item
+        # enemy attack
+        enemy_hit = r.randint(1, enemy["strength"])
+        print(f"Enemy hit: {enemy_hit}")
+        block = r.randint(1, max(player["defence"] - player["speed"] + enemy["speed"] * 2, 0 + 3))
+        print(f"block: {block}")
+        damage = max(enemy_hit - block, 0)
+        player["health"] -= damage
+        print(f"{enemy_name} hits you for {damage} damage. Your health: {player['health']}\n")
+        if player["health"] <= 0:
+            print("You died!")
+            return
 
-#do_combat
-    #Function player_attack_roll()
-#    Roll random number between 1 and player strength plus speed
-#    Function player_defend(enemy_damage)
-#    Block = random number between 1 and and player defense minus stealth minus speed plus enemy speed#
-#
- #   If player or enemy is at 0 end combat with out come of returning health or ending game	
-  #  Use_item
-   #     Describe item
-    #    Ask user to use, discard, or leave item.
-     #   If use then add item attributes to users attributes, remove item from room, place item in users hands.
-      #  Else If discard, subtract item attribute from user attributes and remove item from room and from users hands
-       # Else if leave item  do nothing.
+# Visit room
+def visit_room(player, room_number, game_rooms):
+    chosen = game_rooms[room_number - 1]
+    print(f"\nYou enter {chosen['room']}.")
 
-#    Main loop
-user_health = 90
-while user_health >0:
- #   While user lives
-    #  Display rooms
-    rooms()
-    choose = input("enter a letter to enter a room")
-    if choose == "a":
-        for a in roomers():
-            print(a)
-   # If user enters room 1
-    #    display you enter a hidden place on Earth and you see a note and a gun you go to the gun first and are asked if you want to pick it up then you go to read the note
-    #    If user enters room 2
-     #       display you enter a hidden ship called LA (Lost Aliens) and you see a jet pack and a note
-      #      Ask user to pick up body o pack then read note
-       # If user enters room 3
-        #    display you enter a patrol ship called UA (Unified Aliens) and you run into an enemy scout
-         #   Display enemy stats and ask if you want to run or fight
-          #      Do combat if chose to fight
-    #If user enters room 4
-     #           display you enter your outside on this little island with some people you know and some others that you don't recognise but you talk to each one anyways and you get intel of what the place is called (Quip Quick update intel place) and you get intel of what the bosses sats are
-     #   Display boss stats
-      #  Display write them down on a piece of paper
-   # If user enters room 5
-    #Display your in a Lost Alien Space Ship and you see an enemy named GLARB
-    #Display enemy 3 stats
-    #Display run!!!!
-    #Display you died by not running too fast
-    #isplay avoid GLARB at all costs
-   # Display GLARB Great Lost Alien Rebellion to Boss
-    #    If user enters room 6
-     #       Display you enter IPLA Intel Place for Lost Aliens
-      #      Display you see an enemy
-       #     Display enemy stats
-        #        Do combat
-        #If user enters room 7
-         #   Display you enter a place called BLAT and you see a book
-          #  Display you read the book
-           # Display all enemy stats
-           # Display all rooms with enemies
-            #Display rooms to avoid with no loot
-            #Display you leave room never to return
-  #      If user enters room 8
-   #         You enter Uit a place for Unified Intel Trade
-    #            You see a chest with a ball
-     #           Display Ball o shield stats
-      #          Ask to pick up it and use it or discard it
-       # If user enters room 9
-        #    Display you found a key somewhere in the hall and you unlock the door to the room
-         #   Display you see a man on a chair in some random part of the galaxy
-          #  Display You enter my domain isn't my work done well
-           # Display your work is nothing but theory and kidnapping I know why you do it and it is not good
-            #Display I challenge you weather I know or not on how much life you have
-             #   Do combat
- #   Choose a number for going into a room with that same number to go into
-  #  Call visit room(room number)
-   # If user dead break
-        user_health = -100
+    # Items
+    if chosen["stuff"]:
+        for item in chosen["stuff"][:]:
+            print(f"You found {item} with boost: {item_effects.get(item, {})}")
+            pick = input(f"Do you want to pick up {item}? (y/n): ")
+            if pick.lower() == "y":
+                player["items"].append(item)
+                boost_stats(player, item)
+                chosen["stuff"].remove(item)  # Remove item after pickup
+            else:
+                print(f"You leave the {item}.")
+
+    # Enemy
+    if chosen["enemy"]:
+        print(f"You encounter an enemy: {chosen['enemy']}")
+        fight_or_run = input("Fight or run? (f/r): ")
+        if fight_or_run.lower() == "r":
+            print("You run away!")
+            return player
+        do_combat(player, chosen["enemy"])
+        chosen["enemy"] = None  # Remove enemy after defeat
+
+    return player
+
+# Main loop
+playing = True
+while playing:
+    player = user_stats()
+    user_health = player["health"]
+    game_rooms = roomers()  # persistent room state
+
+    while user_health > 0:
+        rooms()
+        choose = input("Enter 'a' to list all rooms, 'b' to list your stats, or a number to enter a room: ")
+        if choose.lower() == "a":
+            for a in game_rooms:
+                print(a)
+        if choose == 'b':
+            user_stats()
+        else:
+            if choose.isdigit():
+                room_choice = int(choose)
+                if 1 <= room_choice <= 9:
+                    player = visit_room(player, room_choice, game_rooms)
+                    user_health = player["health"]
+                else:
+                    print("Invalid room number.")
+            else:
+                print("Enter a valid number.")
+
+    # Play again?
+    while user_health <= 0:
+        again = input("Continue? (yes, y / no, n): ").lower()
+        if again in ["no", "n"]:
+            playing = False
+            break
+        elif again in ["yes", "y"]:
+            print("\nRestarting game...\n")
+            break  
+        else:
+            print("Must enter a valid answer.")
+            continue
+
+print("\nGame Over.")
