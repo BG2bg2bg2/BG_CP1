@@ -13,15 +13,15 @@ def rooms():
 # Room data
 def roomers():
     return [
-        {"room": "Earth", "stuff": ["note", "gun"], "enemy": None},
-        {"room": "LA", "stuff": ["jetpack", "note"], "enemy": None},
+        {"room": "Earth", "stuff": ["plasma gun"], "enemy": None},
+        {"room": "LA", "stuff": ["jetpack"], "enemy": None},
         {"room": "UA", "stuff": [], "enemy": "scout"},
         {"room": "Quip", "stuff": [], "enemy": 'friends'},
-        {"room": "LASS", "stuff": [], "enemy": 'GLARB'},
+        {"room": "LASS", "stuff": ["drone"], "enemy": 'GLARB'},
         {"room": "IPLA", "stuff": [], "enemy": "scout"},
         {"room": "BLAT", "stuff": ['book'], "enemy": None},
         {"room": "Uit", "stuff": ['ball_o_shield'], "enemy": None},
-        {"room": "HIPOS", "stuff": [], "enemy": 'BOSS'}
+        {"room": "HIPOS", "stuff": ["portal"], "enemy": 'BOSS'}
     ]
 
 # User stats
@@ -37,9 +37,12 @@ def user_stats():
     }
 
 # Item boosts
+
+
 item_effects = {
-    "note": {"defence": r.randint(2, 9)},
-    "gun": {"strength": r.randint(3, 9)},
+    'portal': {'speed': 30, 'health': 10, 'strength': 40, 'defence': 10},
+    "drone": {"speed": 12, "defence": 20, "strength": 25},
+    "plasma gun": {"strength": r.randint(3, 9)},
     "jetpack": {"speed": r.randint(5, 9)},
     "book": {"strength": r.randint(4, 9), "defence": r.randint(5, 10)},
     "ball_o_shield": {"defence": r.randint(4, 9)}
@@ -57,7 +60,7 @@ def boost_stats(player, item):
 enemy_boosts = {
     "scout": {"strength": r.randint(1, 10), "speed": r.randint(0, 2)},
     "friends": {"health": r.randint(1,20), "speed": r.randint(1,20),"defence": r.randint(1,20) ,"strength": r.randint(1,20)},
-    "GLARB": {"health": r.randint(100,200), "speed": r.randint(100,200),"defence": r.randint(100,200) ,"strength": r.randint(100,200)},
+    "GLARB": {"health": r.randint(200,2000), "speed": r.randint(1000,2000),"defence": r.randint(1000,2000) ,"strength": r.randint(1000,2000)},
     "BOSS": {"health": r.randint(10,20) * 6, "speed": r.randint(10,20) * 6,"defence": r.randint(10,20) * 6 ,"strength": r.randint(10,20) * 6}
 }
 
@@ -86,8 +89,12 @@ def do_combat(player, enemy_name):
         print(f"You hit {enemy_name} for {player_hit} damage.")
         if enemy["health"] <= 0:
             print(f"You defeated {enemy_name}!")
-            boost_from_enemy(player, enemy_name)  # Boost stats on enemy defeat
-            return
+            if enemy_name == 'BOSS':
+                    print("You won the game")
+                    return
+            else:
+                boost_from_enemy(player, enemy_name)  # Boost stats on enemy defeat
+                return
 
         # enemy attack
         enemy_hit = r.randint(1, enemy["strength"])
@@ -126,7 +133,8 @@ def visit_room(player, room_number, game_rooms):
             print("You run away!")
             return player
         do_combat(player, chosen["enemy"])
-        chosen["enemy"] = None  # Remove enemy after defeat
+        chosen["enemy"] = None  
+        # Remove enemy after defeat
 
     return player
 
@@ -135,7 +143,7 @@ playing = True
 while playing:
     player = user_stats()
     user_health = player["health"]
-    game_rooms = roomers()  # persistent room state
+    game_rooms = roomers()
 
     while user_health > 0:
         rooms()
@@ -157,6 +165,10 @@ while playing:
                 print("Enter a valid number.")
 
     # Play again?
+    if "BOSS"["health"] <= 0:
+        print("You win!!!!!")
+        
+
     while user_health <= 0:
         again = input("Continue? (yes, y / no, n): ").lower()
         if again in ["no", "n"]:
