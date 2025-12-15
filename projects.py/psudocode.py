@@ -113,6 +113,7 @@ def do_combat(player, enemy_name):
             print(f"You defeated {enemy_name}!")
             if enemy_name == 'BOSS':
                     print("You won the game")
+                    player['health'] = 0
                     return
             else:
                 boost_from_enemy(player, enemy_name)  # Boost stats on enemy defeat
@@ -168,7 +169,10 @@ while playing:
     user_health = player["health"]
     game_rooms = roomers()
 
-    while user_health > 0:
+    while user_health > 0 or 'BOSS'["health"] > 0:
+        if 'BOSS'["health"] <= 0:
+            print("You win")
+            user_health = 0
         rooms()
         choose = input("Enter 'a' to list all rooms, 'b' to list your stats, 'c' for help, or a number to enter a room: ")
         if choose.lower() == "a":
@@ -178,23 +182,17 @@ while playing:
             user_stats()
         if choose == 'c':
             print(help)
-        else:
-            if choose.isdigit():
-                room_choice = int(choose)
-                if 1 <= room_choice <= 9:
-                    player = visit_room(player, room_choice, game_rooms)
-                    user_health = player["health"]
-                else:
-                    print("Invalid room number.")
+        if choose.isdigit():
+            room_choice = int(choose)
+            if 1 <= room_choice <= 9:
+                player = visit_room(player, room_choice, game_rooms)
+                user_health = player["health"]
             else:
-                print("Enter a valid number.")
+                print("Invalid room number.")
+        else:
+            print("Enter a valid number.")
 
     # Play again?
-    if "BOSS"["health"] <= 0:
-        user_health = 0
-        print("You win!!!!!")
-        
-
     while user_health <= 0:
         again = input("Continue? (yes, y / no, n): ").lower()
         if again in ["no", "n"]:
