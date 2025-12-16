@@ -96,6 +96,9 @@ def do_combat(player, enemy_name):
             if enemy_name == "BOSS":
                 print("You won the game!")
                 player["health"] = 0
+            if enemy_name == "GLARB":
+                print("You get extra points for killing GLARB")
+                player["health"] = 100
             return
 
         enemy_hit = r.randint(1, enemy["strength"])
