@@ -124,6 +124,8 @@ def visit_room(player, room_number, game_rooms):
                 player["items"].append(item)
                 boost_stats(player, item)
                 chosen["stuff"].remove(item)
+        for item in chosen["stuff"][:]:
+            item.list(["stuff"])[:]
 
     if chosen["enemy"]:
         print(f"You encounter an enemy: {chosen['enemy']}")
